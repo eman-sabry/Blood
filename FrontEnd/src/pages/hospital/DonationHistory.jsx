@@ -75,6 +75,9 @@ export default function DonationHistoryPage() {
                   Donor
                 </th>
                 <th className="p-4 text-xs font-bold text-gray-400 uppercase tracking-wider">
+                  phone
+                </th>
+                <th className="p-4 text-xs font-bold text-gray-400 uppercase tracking-wider">
                   Blood Type
                 </th>
                 <th className="p-4 text-xs font-bold text-gray-400 uppercase tracking-wider">
@@ -100,6 +103,14 @@ export default function DonationHistoryPage() {
                         </div>
                         <span className="font-semibold text-gray-800">
                           {item.donorName}
+                        </span>
+                      </div>
+                    </td>
+                    <td className="p-4">
+                      <div className="flex items-center gap-3">
+                        
+                        <span className="font-semibold text-gray-800">
+                          {item.donorphone}
                         </span>
                       </div>
                     </td>
