@@ -42,7 +42,7 @@ export default function RequestsPage() {
       )}
 
       {/* HEADER */}
-      <div className="max-w-5xl mx-auto mb-6 text-center">
+      <div className="max-w-5xl mx-auto mb-6 text-center mt-20 md:mt-0">
         <div className="flex items-center justify-center gap-2 mb-2">
           <h2 className="text-4xl font-extrabold text-slate-900 tracking-tight">
             Blood Requests

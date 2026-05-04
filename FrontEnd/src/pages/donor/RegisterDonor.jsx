@@ -17,7 +17,7 @@ export default function RegisterDonor() {
   const address = watch("address");
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-white to-red-50 px-4 py-12">
+    <div className="min-h-screen  flex items-center justify-center bg-gradient-to-b from-white to-red-50 px-4 py-12">
       <div className="w-full max-w-lg bg-white border border-gray-100 rounded-3xl shadow-sm p-8">
         <div className="flex flex-col items-center mb-8">
           <h2 className="text-2xl font-bold text-gray-900">

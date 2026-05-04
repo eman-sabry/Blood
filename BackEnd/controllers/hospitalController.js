@@ -18,13 +18,16 @@ exports.getAllHospitals = async (req, res) => {
         });
     }
 };
-exports.updateHospital = async (req, res) => {
+exports.approveHospital = async (req, res) => {
     try {
-        const hospital = await Hospital.findOne({
-            where: {
-                userId: req.params.userId
-            }
-        });
+        const {
+            id
+        } = req.params;
+        const {
+            status
+        } = req.body; // ستكون قيمتها "approved"
+
+        const hospital = await Hospital.findByPk(id);
 
         if (!hospital) {
             return res.status(404).json({
@@ -32,12 +35,18 @@ exports.updateHospital = async (req, res) => {
             });
         }
 
-        await hospital.update(req.body);
+        // تحديث الحالة
+        hospital.status = status;
+        await hospital.save();
 
-        res.status(200).json(hospital);
+        res.status(200).json({
+            message: "Hospital approved successfully",
+            hospital
+        });
     } catch (error) {
         res.status(500).json({
-            message: error.message
+            message: "Internal server error",
+            error: error.message
         });
     }
 };

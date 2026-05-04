@@ -144,7 +144,7 @@ export default function Profile() {
     .toUpperCase();
 console.log("User Data from API:", user);
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 mt-20 md:mt-0">
       {/* ── Header ── */}
       {/* <div className="flex items-center justify-between flex-wrap gap-3">
         <h2 className="text-2xl font-bold text-gray-900">My Profile</h2>

@@ -2,258 +2,363 @@ import React, { useState } from "react";
 import {
   FaUsers,
   FaHospital,
-  FaHeartbeat,
+  FaCheck,
   FaHistory,
-  FaSearch,
-  FaCheckCircle,
-  FaExclamationCircle,
-  FaChartLine,
-  FaTrashAlt,
+  FaClock,
+  FaPhoneAlt,
+  FaTrash,
+  FaBell,
+  FaArrowUp,
+  FaEllipsisV,
 } from "react-icons/fa";
+import { FaDroplet } from "react-icons/fa6";
 import { useAdminData } from "../../Hooks/useAdminData";
+import Swal from "sweetalert2";
 
-const StatCard = ({ label, value, icon, color, bg }) => (
-  <div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 flex items-center gap-5 transition-all hover:shadow-md hover:-translate-y-1">
-    <div className={`${bg} ${color} p-4 rounded-2xl text-2xl shadow-inner`}>
-      {icon}
+// 1. مكون بطاقة الإحصائيات المطور (تفاعلي مع بياناتك)
+const StatCard = ({ title, value, icon: Icon, color = "bg-gray-500" }) => {
+  const textColor =
+    typeof color === "string" ? color.replace("bg-", "text-") : "text-gray-500";
+  return (
+    <div className="group bg-white p-6 rounded-[2rem] shadow-sm border border-gray-100 flex items-center gap-5 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden relative">
+      {/* أيقونة خلفية كبيرة تعطي عمقاً بصرياً */}
+      <div
+        className={`absolute -right-4 -bottom-4 opacity-[0.03] group-hover:opacity-[0.08] transition-opacity ${textColor}`}
+      >
+        {Icon && <Icon size={100} />}
+      </div>
+
+      <div
+        className={`p-4 rounded-2xl ${color} bg-opacity-10 text-2xl ${textColor} group-hover:scale-110 transition-transform relative z-10`}
+      >
+        {Icon && <Icon />}
+      </div>
+
+      <div className="relative z-10">
+        <p className="text-gray-400 text-[10px] font-black uppercase tracking-widest mb-1">
+          {title}
+        </p>
+        <h3 className="text-3xl font-black text-slate-800 tracking-tight">
+          {value ?? 0}
+        </h3>
+      </div>
     </div>
-    <div>
-      <p className="text-gray-400 text-[10px] font-black uppercase tracking-widest">
-        {label}
-      </p>
-      <p className="text-3xl font-black text-slate-800">{value}</p>
-    </div>
-  </div>
-);
+  );
+};
 
 export default function AdminDashboard() {
-  const { donors, hospitals, requests, history, search, actions, isLoading } =
-    useAdminData();
-  const [activeTab, setActiveTab] = useState("approvals");
+  const { donors, hospitals, requests, actions, isLoading } = useAdminData();
+  const [activeTab, setActiveTab] = useState("verification");
+  const [filterBlood, setFilterBlood] = useState("");
+  const [filterHospName, setFilterHospName] = useState("");
+
+  const pendingHospitals = hospitals.filter((h) => h.status === "pending");
+  const filteredRequests = requests.filter((req) => {
+    const matchesBlood = filterBlood
+      ? req.bloodTypeNeeded === filterBlood
+      : true;
+    const matchesHosp = filterHospName
+      ? req.hospitalName.toLowerCase().includes(filterHospName.toLowerCase())
+      : true;
+    return matchesBlood && matchesHosp;
+  });
+
+  const confirmAction = (id, type, actionName) => {
+    const isDelete = actionName === "delete";
+    Swal.fire({
+      title: isDelete ? "Delete User?" : "Approve Hospital?",
+      text: isDelete
+        ? "This deletes the User and Profile permanently!"
+        : "Hospital will be activated.",
+      icon: isDelete ? "warning" : "question",
+      showCancelButton: true,
+      confirmButtonColor: isDelete ? "#ef4444" : "#10b981",
+      borderRadius: "2rem",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        if (isDelete) {
+          type === "hospital" ? actions.deleteH(id) : actions.deleteD(id);
+        } else {
+          actions.approve(id);
+        }
+      }
+    });
+  };
 
   if (isLoading)
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="animate-spin h-10 w-10 border-4 border-red-500 border-t-transparent rounded-full" />
+      <div className="flex justify-center items-center h-screen font-black text-slate-800 bg-[#fbfbfb]">
+        <div className="animate-bounce">Loading Systems...</div>
       </div>
     );
 
-  const stats = [
-    {
-      label: "Total Donors",
-      value: donors.length,
-      icon: <FaUsers />,
-      color: "text-blue-600",
-      bg: "bg-blue-50",
-    },
-    {
-      label: "Hospitals",
-      value: hospitals.length,
-      icon: <FaHospital />,
-      color: "text-green-600",
-      bg: "bg-green-50",
-    },
-    {
-      label: "Pending Needs",
-      value: requests.length,
-      icon: <FaHeartbeat />,
-      color: "text-red-600",
-      bg: "bg-red-50",
-    },
-    {
-      label: "Total History",
-      value: history.length,
-      icon: <FaChartLine />,
-      color: "text-purple-600",
-      bg: "bg-purple-50",
-    },
-  ];
-
   return (
-    <div className="p-6 space-y-8 max-w-7xl mx-auto">
-      {/* Header */}
-      <header className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-        <div>
-          <h1 className="text-4xl font-black text-slate-900">Admin Control</h1>
-          <p className="text-gray-500 font-medium">
-            Manage hospital approvals and emergency requests.
-          </p>
+    <div className="p-6 md:p-10  min-h-screen font-sans relative overflow-hidden">
+  
+      <div className="relative z-10 max-w-7xl mx-auto">
+        {/* Header Section */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-10">
+          <div>
+            <h1 className="text-4xl font-black text-slate-800 tracking-tight">
+              Admin Panel
+            </h1>
+            <p className="text-gray-400 font-medium">
+              Control center for blood donation network
+            </p>
+          </div>
+         
         </div>
-        <div className="relative w-full md:w-80 group">
-          <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300 group-focus-within:text-red-500 transition-colors" />
-          <input
-            type="text"
-            placeholder="Search donors, hospitals..."
-            className="w-full pl-12 pr-4 py-3.5 bg-white border border-gray-200 rounded-2xl focus:ring-2 focus:ring-red-500 outline-none transition-all shadow-sm"
-            value={search.term}
-            onChange={(e) => search.setTerm(e.target.value)}
+
+        {/* 2. Stats Grid (ببياناتك الفعلية) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+          <StatCard
+            title="Total Donors"
+            value={donors.length}
+            icon={FaUsers}
+            color="bg-red-500"
+          />
+          <StatCard
+            title="Total Hospitals"
+            value={hospitals.length}
+            icon={FaHospital}
+            color="bg-blue-500"
+          />
+          <StatCard
+            title="System Requests"
+            value={requests.length}
+            icon={FaDroplet}
+            color="bg-orange-500"
+          />
+          <StatCard
+            title="Pending"
+            value={pendingHospitals.length}
+            icon={FaClock}
+            color="bg-yellow-500"
           />
         </div>
-      </header>
 
-      {/* Stats Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {stats.map((s, i) => (
-          <StatCard key={i} {...s} />
-        ))}
-      </div>
-
-      <div className="grid lg:grid-cols-3 gap-8">
-        {/* Main Section */}
-        <div className="lg:col-span-2 space-y-6">
-          {/* Custom Tabs */}
-          <div className="flex bg-gray-100 p-1.5 rounded-2xl w-fit">
+        {/* 3. Main Content Area */}
+        <div className="bg-white rounded-[2.5rem] shadow-sm border border-gray-100 overflow-hidden">
+          {/* Tabs Navigation */}
+          <div className="flex border-b p-3 bg-gray-50/50 gap-2">
             <button
-              onClick={() => setActiveTab("approvals")}
-              className={`px-8 py-2.5 rounded-xl text-sm font-bold transition-all ${activeTab === "approvals" ? "bg-white text-slate-900 shadow-sm" : "text-gray-500 hover:text-slate-800"}`}
+              onClick={() => setActiveTab("verification")}
+              className={`flex items-center gap-3 px-8 py-4 rounded-[1.5rem] text-sm font-black transition-all ${
+                activeTab === "verification"
+                  ? "bg-white shadow-md text-red-600 scale-105"
+                  : "text-gray-400 hover:text-gray-600"
+              }`}
             >
-              Approvals
+              <FaCheck /> Pending Approvals
+              {pendingHospitals.length > 0 && (
+                <span className="bg-red-500 text-white text-[10px] px-2 py-0.5 rounded-full animate-pulse">
+                  {pendingHospitals.length}
+                </span>
+              )}
             </button>
             <button
-              onClick={() => setActiveTab("requests")}
-              className={`px-8 py-2.5 rounded-xl text-sm font-bold transition-all ${activeTab === "requests" ? "bg-white text-slate-900 shadow-sm" : "text-gray-500 hover:text-slate-800"}`}
+              onClick={() => setActiveTab("Requests")}
+              className={`flex items-center gap-3 px-8 py-4 rounded-[1.5rem] text-sm font-black transition-all ${
+                activeTab === "Requests"
+                  ? "bg-white shadow-md text-red-600 scale-105"
+                  : "text-gray-400 hover:text-gray-600"
+              }`}
             >
-              Live Requests
+              <FaHistory /> System Requests
             </button>
           </div>
 
-          <div className="bg-white rounded-[2rem] border border-gray-100 shadow-sm overflow-hidden min-h-[500px]">
-            {activeTab === "approvals" ? (
-              <div className="p-8">
-                <h3 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2">
-                  <FaExclamationCircle className="text-orange-500" /> Pending
-                  Verification
-                </h3>
-                <div className="space-y-4">
-                  {hospitals.filter((h) => !h.isApproved).length > 0 ? (
-                    hospitals
-                      .filter((h) => !h.isApproved)
-                      .map((h) => (
-                        <div
-                          key={h.id}
-                          className="flex items-center justify-between p-5 bg-gray-50 rounded-3xl border border-transparent hover:border-red-100 hover:bg-white transition-all group"
-                        >
-                          <div className="flex items-center gap-4">
-                            <div className="w-12 h-12 rounded-2xl bg-white shadow-sm flex items-center justify-center text-red-500 font-black">
-                              H
-                            </div>
-                            <div>
-                              <h4 className="font-bold text-slate-800">
-                                {h.hospitalName}
-                              </h4>
-                              <p className="text-xs text-gray-400">{h.email}</p>
-                            </div>
-                          </div>
-                          <div className="flex gap-2">
-                            <button
-                              onClick={() => actions.approveHospital(h)}
-                              className="bg-green-600 text-white px-6 py-2.5 rounded-xl text-xs font-bold hover:bg-green-700 transition shadow-lg shadow-green-100"
-                            >
-                              Approve
-                            </button>
-                            <button
-                              onClick={() => actions.deleteHospital(h.id)}
-                              className="p-3 text-gray-400 hover:text-red-500 transition"
-                            >
-                              <FaTrashAlt />
-                            </button>
-                          </div>
-                        </div>
-                      ))
-                  ) : (
-                    <div className="text-center py-20">
-                      <FaCheckCircle className="mx-auto text-green-200 text-6xl mb-4" />
-                      <p className="text-gray-400 font-medium">
-                        All caught up! No pending approvals.
-                      </p>
-                    </div>
-                  )}
-                </div>
-              </div>
-            ) : (
-              /* Live Requests Section */
-              <div className="p-8">
-                <h3 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2">
-                  <FaHeartbeat className="text-red-500 animate-pulse" /> Live
-                  Emergency Requests
-                </h3>
-                <div className="grid sm:grid-cols-2 gap-4">
-                  {requests.map((req) => (
+          <div className="p-8">
+            {activeTab === "verification" && (
+              <div className="space-y-6">
+                {pendingHospitals?.length > 0 ? (
+                  pendingHospitals?.map((h) => (
                     <div
-                      key={req.id}
-                      className="p-5 rounded-3xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition group"
+                      key={h.id}
+                      className="bg-white border border-gray-100 rounded-[2.5rem] p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all group relative overflow-hidden"
                     >
-                      <div className="flex justify-between items-start mb-4">
-                        <span className="px-3 py-1 bg-red-50 text-red-600 text-[10px] font-black rounded-lg uppercase tracking-tighter">
-                          {req.bloodType} Required
-                        </span>
-                        <div className="flex items-center gap-1 text-orange-500">
-                          <span className="text-[10px] font-bold uppercase">
-                            {req.urgency}
-                          </span>
+                      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+                        {/* Hospital Info */}
+                        <div className="flex items-center gap-6 relative z-10">
+                          <div className="w-20 h-20 bg-blue-50 text-blue-600 rounded-[1.8rem] flex items-center justify-center text-3xl border border-blue-100 group-hover:rotate-6 transition-transform">
+                            <FaHospital />
+                          </div>
+                          <div>
+                            <h4 className="font-black text-slate-800 text-xl tracking-tight">
+                              {h.displayName || h.hospitalName}
+                            </h4>
+                            <div className="flex items-center gap-2 mt-2">
+                              <span className="px-3 py-1 bg-amber-50 text-amber-600 text-[10px] font-black uppercase rounded-lg border border-amber-100 flex items-center gap-2">
+                                <span className="w-1.5 h-1.5 bg-amber-500 rounded-full animate-ping"></span>
+                                Awaiting Verification
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Data Grid */}
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 flex-1 max-w-2xl relative z-10">
+                          <div className="space-y-1">
+                            <p className="text-[10px] uppercase font-black text-gray-300 tracking-widest">
+                              License No.
+                            </p>
+                            <p className="text-sm font-mono font-bold text-slate-600 bg-gray-50 px-3 py-1 rounded-xl inline-block border border-gray-100">
+                              {h.licenseNumber || "LN-CERT-PENDING"}
+                            </p>
+                          </div>
+                          <div className="space-y-1">
+                            <p className="text-[10px] uppercase font-black text-gray-300 tracking-widest">
+                              Contact
+                            </p>
+                            <p className="text-sm font-bold text-slate-600 flex items-center gap-2">
+                              <FaPhoneAlt className="text-blue-400" />{" "}
+                              {h.phone || h.User?.phone}
+                            </p>
+                          </div>
+                          <div className="space-y-1">
+                            <p className="text-[10px] uppercase font-black text-gray-300 tracking-widest">
+                              Location
+                            </p>
+                            <p className="text-sm font-bold text-slate-400 truncate max-w-[180px] italic">
+                              {h.address}
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* Actions */}
+                        <div className="flex items-center gap-3 relative z-10">
+                          <button
+                            onClick={() =>
+                              confirmAction(h.id, "hospital", "approve")
+                            }
+                            className="flex-1 md:flex-none px-10 py-4 text-white rounded-[1.5rem] font-black text-sm bg-green-500 hover:bg-green-600 shadow-lg shadow-green-100 active:scale-95 transition-all"
+                          >
+                            Approve Entity
+                          </button>
+                          <button
+                            onClick={() =>
+                              confirmAction(h.id, "hospital", "delete")
+                            }
+                            className="p-5 bg-red-50 text-red-500 rounded-[1.5rem] hover:bg-red-500 hover:text-white transition-all group-hover:rotate-12"
+                          >
+                            <FaTrash size={16} />
+                          </button>
                         </div>
                       </div>
-                      <h4 className="text-2xl font-black text-slate-800 mb-1">
-                        {req.unitsRequested}{" "}
-                        <span className="text-sm font-normal text-gray-400">
-                          Units
-                        </span>
-                      </h4>
-                      <p className="text-sm text-gray-500 font-medium mb-4">
-                        {req.hospitalName}
-                      </p>
-                      <div className="flex gap-2">
-                        <button className="flex-1 bg-slate-900 text-white py-2.5 rounded-xl text-xs font-bold hover:bg-slate-800 transition">
-                          Contact
-                        </button>
-                        <button
-                          onClick={() => actions.deleteRequest(req.id)}
-                          className="p-2.5 bg-gray-50 text-gray-400 rounded-xl hover:text-red-500 transition"
-                        >
-                          <FaTrashAlt size={14} />
-                        </button>
-                      </div>
                     </div>
-                  ))}
+                  ))
+                ) : (
+                  <div className="text-center py-32 bg-gray-50/50 rounded-[4rem] border-4 border-dashed border-gray-100">
+                    <div className="text-gray-200 text-8xl mb-6 flex justify-center opacity-50">
+                      <FaHospital />
+                    </div>
+                    <p className="text-gray-400 text-xl font-black tracking-tight">
+                      Great job! No hospitals awaiting approval.
+                    </p>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {activeTab === "Requests" && (
+              <div className="space-y-8 animate-in fade-in duration-500">
+                {/* Filters */}
+                <div className="flex flex-wrap gap-4 p-6 bg-slate-50 rounded-[2rem] border border-slate-100">
+                  <div className="flex-1 min-w-[200px] relative">
+                    <input
+                      placeholder="Search hospital name..."
+                      className="w-full bg-white pl-12 pr-4 py-4 rounded-2xl border-none shadow-sm text-sm font-bold outline-none focus:ring-2 ring-red-100 transition-all"
+                      value={filterHospName}
+                      onChange={(e) => setFilterHospName(e.target.value)}
+                    />
+                    <FaHospital className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300" />
+                  </div>
+                  <select
+                    className="bg-white px-8 py-4 rounded-2xl border-none shadow-sm text-sm font-black text-slate-700 outline-none cursor-pointer"
+                    value={filterBlood}
+                    onChange={(e) => setFilterBlood(e.target.value)}
+                  >
+                    <option value="">All Blood Types</option>
+                    {["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"].map(
+                      (t) => (
+                        <option key={t} value={t}>
+                          {t}
+                        </option>
+                      ),
+                    )}
+                  </select>
+                </div>
+
+                {/* Requests Table */}
+                <div className="overflow-hidden rounded-[2rem] border border-gray-100 shadow-sm">
+                  <table className="w-full text-left border-collapse bg-white">
+                    <thead className="bg-slate-800 text-white">
+                      <tr>
+                        <th className="p-6 font-black text-[10px] uppercase tracking-[0.2em]">
+                          Hospital Entity
+                        </th>
+                        <th className="p-6 font-black text-[10px] uppercase tracking-[0.2em]">
+                          Blood Type
+                        </th>
+                        <th className="p-6 font-black text-[10px] uppercase tracking-[0.2em]">
+                          Current Status
+                        </th>
+                        <th className="p-6 font-black text-[10px] uppercase tracking-[0.2em] text-right">
+                          Created At
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-50">
+                      {filteredRequests.map((req) => (
+                        <tr
+                          key={req.id}
+                          className="hover:bg-red-50/30 transition-colors group"
+                        >
+                          <td className="p-6">
+                            <div className="flex items-center gap-3">
+                              <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-400 group-hover:bg-red-100 group-hover:text-red-500 transition-colors">
+                                <FaHospital size={12} />
+                              </div>
+                              <span className="font-black text-slate-700">
+                                {req.hospitalName}
+                              </span>
+                            </div>
+                          </td>
+                          <td className="p-6">
+                            <span className="px-4 py-2 bg-red-600 text-white rounded-xl font-black text-xs shadow-md shadow-red-100">
+                              {req.bloodTypeNeeded}
+                            </span>
+                          </td>
+                          <td className="p-6">
+                            <span
+                              className={`px-4 py-1.5 text-[10px] font-black rounded-full uppercase tracking-widest ${
+                                req.status === "Completed"
+                                  ? "bg-green-100 text-green-700"
+                                  : req.status === "Pending"
+                                    ? "bg-orange-100 text-orange-700"
+                                    : "bg-red-100 text-red-700"
+                              }`}
+                            >
+                              {req.status}
+                            </span>
+                          </td>
+                          <td className="p-6 text-right text-gray-400 font-bold text-xs">
+                            {new Date(req.createdAt).toLocaleDateString(
+                              undefined,
+                              {
+                                day: "numeric",
+                                month: "short",
+                                year: "numeric",
+                              },
+                            )}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
               </div>
             )}
-          </div>
-        </div>
-
-        {/* Sidebar: Activity & Logs */}
-        <div className="space-y-6">
-          <div className="bg-slate-900 rounded-[2rem] p-8 text-white shadow-xl">
-            <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
-              <FaHistory className="text-red-500" /> Recent Activity
-            </h3>
-            <div className="space-y-6">
-              {history.slice(0, 5).map((log) => (
-                <div
-                  key={log.id}
-                  className="relative pl-6 border-l border-white/10 group"
-                >
-                  <div className="absolute left-[-5px] top-1 w-2.5 h-2.5 bg-red-500 rounded-full shadow-[0_0_10px_rgba(239,68,68,0.5)]" />
-                  <p className="text-sm font-bold text-white/90">
-                    New Donation Logged
-                  </p>
-                  <p className="text-[10px] text-white/40 uppercase mt-1">
-                    Donor ID: {log.donorId}
-                  </p>
-                  <p className="text-xs text-red-400 mt-0.5">
-                    {log.hospitalName}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="bg-red-50 rounded-[2rem] p-8 border border-red-100">
-            <h4 className="text-red-600 font-bold mb-2">Admin Tip</h4>
-            <p className="text-red-900/60 text-xs leading-relaxed">
-              Always verify hospital credentials and license numbers via the
-              Ministry of Health portal before approving new registrations.
-            </p>
           </div>
         </div>
       </div>

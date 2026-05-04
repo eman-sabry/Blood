@@ -13,13 +13,13 @@ export default function DonationHistoryTable({ history, searchQuery }) {
 
   const statusStyles = {
     Completed: "text-green-600 font-medium",
-    Health_Not_Eligible: "text-red-500 font-medium",
+    Cancelled: "text-red-500 font-medium",
     Pending: "text-yellow-500 font-medium",
   };
 
   const statusLabels = {
     Completed: "Completed",
-    Health_Not_Eligible: "Health condition not suitable",
+    Cancelled: "Health condition not suitable",
     Pending: "Pending",
   };
 
@@ -41,7 +41,11 @@ export default function DonationHistoryTable({ history, searchQuery }) {
               <td className="py-3 px-4">{h.donorName}</td>
               <td className="px-4">{h.donorBloodType}</td>
               <td className="px-4">
-                {new Date(h.donationDate).toLocaleDateString()}
+                {new Date(h.updatedAt).toLocaleDateString("en-GB", {
+                  day: "2-digit",
+                  month: "short",
+                  year: "numeric",
+                })}
               </td>
               <td
                 className={`px-4 ${statusStyles[h.status] || "text-gray-500"}`}

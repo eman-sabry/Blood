@@ -24,7 +24,7 @@ export default function NotificationsPage() {
   const allNotifications = [...unread, ...read];
 
   return (
-    <div className="min-h-screen p-4 md:p-6 bg-gray-50/50">
+    <div className="min-h-screen p-4 md:p-6 mt-20 md:mt-0 bg-gray-50/50">
       {/* HEADER CARD */}
       <div className="max-w-4xl mx-auto bg-white p-5 rounded-2xl shadow-sm border border-gray-100 flex flex-col md:flex-row justify-between items-center gap-4">
         <div className="flex items-center gap-4">

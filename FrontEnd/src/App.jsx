@@ -29,15 +29,16 @@ import DonationHistoryPage from "./pages/hospital/DonationHistory";
 import NotificationsPage from "./pages/notifications";
 import DonationManagement from "./pages/hospital/DonationManagement";
 import UsersPage from "./pages/Admin/UsersPage";
-import RequestsPage from "./pages/Admin/RequestsPage";
+
+import Contact from "./pages/Contact";
 function App() {
   return (
-    <div className="mt-10">
+    <div className="mt-10 ">
       <Routes>
         {/* ================= PUBLIC ROUTES ================= */}
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<h1>Contact Page</h1>} />
+        <Route path="/contact" element={<Contact/>} />
 
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<RoleSelect />} />
@@ -95,8 +96,7 @@ function App() {
         >
           <Route index element={<Navigate to="dashboard" />} />
           <Route path="users" element={<UsersPage />} />
-          <Route path="requests" element={<RequestsPage />} />
-
+      
           <Route path="dashboard" element={<AdminDashboard />} />
           <Route path="profile" element={<Profile />} />
         </Route>

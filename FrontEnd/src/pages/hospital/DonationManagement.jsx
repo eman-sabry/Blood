@@ -99,7 +99,7 @@ const DonationManagement = () => {
   }
 
   return (
-    <div className=" min-h-screen ">
+    <div className=" min-h-screen mt-20 md:mt-0 ">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="flex flex-col  mb-10 gap-4">

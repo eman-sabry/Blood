@@ -41,7 +41,7 @@ export default function StockPage() {
   };
 
   return (
-    <div className="min-h-screen p-8">
+    <div className="min-h-screen p-8 mt-10 md:mt-0">
       <StockHeader />
 
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-10">

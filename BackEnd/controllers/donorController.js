@@ -55,3 +55,24 @@ exports.createDonor = async (req, res) => {
         });
     }
 };
+exports.deleteDonor = async (req, res) => {
+    try {
+        const {
+            id
+        } = req.params;
+        const deleted = await Donor.destroy({
+            where: {
+                id: id
+            }
+        });
+
+        if (deleted) {
+            return res.status(200).send("Donor deleted");
+        }
+        throw new Error("Donor not found");
+    } catch (error) {
+        return res.status(404).json({
+            message: error.message
+        });
+    }
+};

@@ -5,5 +5,5 @@ const donorController = require("../controllers/donorController");
 router.get("/", donorController.getAllDonors);
 router.post("/", donorController.createDonor);
 router.patch("/:id", donorController.updateDonor);
-
+router.delete('/:id', donorController.deleteDonor);
 module.exports = router;

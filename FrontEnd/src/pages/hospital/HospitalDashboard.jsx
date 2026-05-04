@@ -69,7 +69,7 @@ const { notifications } = useHospitalData(user?.userId);
   ];
 
   return (
-    <div className="space-y-8 p-4 md:p-6">
+    <div className="space-y-8 mt-20 md:mt-0 p-4 md:p-6">
       {/* HEADER */}
       <div className="flex justify-between items-center">
         <div>

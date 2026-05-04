@@ -78,7 +78,7 @@ export default function CreateRequest() {
   };
 
   return (
-    <div className="min-h-screen p-6 ">
+    <div className="min-h-screen mt-10 md:mt-0 p-6 ">
       {/* Header */}
       <div className="text-center mb-10">
         <h1 className="text-4xl font-extrabold text-slate-900 tracking-tight">

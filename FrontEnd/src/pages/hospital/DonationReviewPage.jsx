@@ -53,16 +53,13 @@ export default function DonationReviewPage() {
   };
 
   return (
-    <div className="p-6 max-w-5xl mx-auto">
+    <div className="p-6 max-w-5xl mx-auto mt-10 md:mt-0">
       {/* HEADER */}
       <div className="bg-white p-4 rounded-xl shadow mb-4">
-        <h2 className="text-xl font-bold">
-          {request.hospitalName}
-        </h2>
+        <h2 className="text-xl font-bold">{request.hospitalName}</h2>
 
         <p className="text-gray-500">
-          Blood Type: {request.bloodTypeNeeded} | Units:{" "}
-          {request.quantity}
+          Blood Type: {request.bloodTypeNeeded} | Units: {request.quantity}
         </p>
       </div>
 
@@ -83,9 +80,7 @@ export default function DonationReviewPage() {
 
               return (
                 <tr key={d.donorId} className="border-b">
-                  <td className="p-3">
-                    {donor?.name || "Unknown"}
-                  </td>
+                  <td className="p-3">{donor?.name || "Unknown"}</td>
 
                   <td>{d.status}</td>
 
@@ -107,9 +102,7 @@ export default function DonationReviewPage() {
       {/* REVIEW PANEL */}
       {selectedDonor && (
         <div className="mt-6 bg-white p-4 rounded-xl shadow">
-          <h3 className="font-bold mb-3">
-            Donor Screening
-          </h3>
+          <h3 className="font-bold mb-3">Donor Screening</h3>
 
           <div className="grid gap-2">
             <input

@@ -4,11 +4,10 @@ const userCtrl = require("../controllers/userController");
 
 
 router.get("/", userCtrl.getAllUsers);
-
-
+router.post('/users', userCtrl.createUserByAdmin);
 router.get("/:id", userCtrl.getUserById);
 
-router.put("/:id", userCtrl.updateUser);
+router.patch("/:id", userCtrl.updateUser);
 
 router.delete("/:id", userCtrl.deleteUser);
 

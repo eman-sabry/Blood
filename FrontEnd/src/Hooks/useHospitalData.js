@@ -11,7 +11,6 @@ import {
 export function useHospitalData(hospitalId) {
     const queryClient = useQueryClient();
 
-    // دالة مساعدة لإرسال الإشعارات (تستخدم المعرف الخاص بالمستخدم في جدول users)
     const sendNotification = async (targetUid, message, type) => {
         try {
             await api.post(`/notifications`, {
@@ -25,7 +24,7 @@ export function useHospitalData(hospitalId) {
             console.error("Failed to send notification:", error);
         }
     };
-
+//expired in 42 day of create
     const getCalculatedExpiryDate = () => {
         const date = new Date();
         date.setDate(date.getDate() + 42);
@@ -121,20 +120,32 @@ export function useHospitalData(hospitalId) {
     const users = usersQuery.data || [];
     const donors = donorsQuery.data || [];
 
-    const donationHistoryWithNames = (donationHistoryQuery.data || []).map((item) => {
-        const donorProfile = donors.find(d => String(d.id) === String(item.donorId));
-        const donorUser = donorProfile ? users.find(u => String(u.id) === String(donorProfile.userId)) : null;
-        const hospitalUser = users.find(u => String(u.id) === String(item.hospitalId));
+  const hospitalsQuery = useQuery({
+      queryKey: ["hospitals"],
+      queryFn: async () => (await api.get(`/hospitals`)).data, 
+  });
 
-        return {
-            ...item,
-            donorName: donorUser ?.name || "Unknown Donor",
-            donorBloodType: donorProfile ?.bloodType || item.bloodType || "Unknown",
-            hospitalName: hospitalUser ?.name || "Hospital"
-        };
-    });
+  const hospitals = hospitalsQuery.data || [];
 
-    // --- العمليات (Mutations) ---
+  
+  const donationHistoryWithNames = (donationHistoryQuery.data || []).map((item) => {
+    
+      const donorProfile = donors.find(d => String(d.id) === String(item.donorId));
+      const donorUser = donorProfile ? users.find(u => String(u.id) === String(donorProfile.userId)) : null;
+
+      const hospitalProfile = hospitals.find(h => String(h.id) === String(item.hospitalId));
+      
+      const hospitalUser = hospitalProfile ? users.find(u => String(u.id) === String(hospitalProfile.userId)) : null;
+
+      return {
+          ...item,
+          donorName: donorUser ?.name || "Unknown Donor",
+          donorBloodType: donorProfile ?.bloodType || item.bloodType || "Unknown",
+          hospitalName: hospitalUser ?.name || "Hospital"
+      };
+  });
+
+
 
     const createBloodRequest = async (data) => {
         try {

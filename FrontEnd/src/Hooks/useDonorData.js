@@ -44,14 +44,15 @@ export function useDonorData(donorId) {
     });
     const hospitals = hospitalsQuery.data || [];
 
-    const donorQuery = useQuery({
-        queryKey: ["donor", donorId],
-        enabled: !!donorId,
-        queryFn: async () => {
-            const res = await api.get(`/donors`);
-            return res.data.find((d) => String(d.id) === String(donorId));
-        },
-    });
+  const donorQuery = useQuery({
+      queryKey: ["donor", donorId],
+      enabled: !!donorId,
+      queryFn: async () => {
+          const res = await api.get(`/donors`);
+          const foundDonor = res.data.find((d) => String(d.id) === String(donorId));
+          return foundDonor || null;
+      },
+  });
     const donor = donorQuery.data;
 
     const bloodRequestsQuery = useQuery({
@@ -71,7 +72,6 @@ export function useDonorData(donorId) {
         enabled: !!donorId,
         queryFn: async () => {
             const res = await api.get(`/notifications?userId=${donorId}`);
-            // ترتيب التنبيهات من الأحدث للأقدم
             return (res.data || []).sort((a, b) => new Date(b.time) - new Date(a.time));
         },
     });
@@ -129,7 +129,8 @@ export function useDonorData(donorId) {
     const acceptRequestMutation = useMutation({
         mutationFn: async (requestId) => {
             if (!donor) throw new Error("Donor profile not loaded!");
-            const donorUserName = users.find(u => String(u.id) === String(donorId))?.name || "A donor";
+          const donorUser = users.find(u => String(u.id) === String(donor.userId));
+          const donorUserName = donorUser ?.name || "A donor";
             const req = allRequests.find(r => String(r.id) === String(requestId));
             const hospitalEntry = hospitals.find(h => String(h.id) === String(req.hospitalId));
 
@@ -170,8 +171,8 @@ export function useDonorData(donorId) {
 
             if (record) {
                 const hospitalEntry = hospitals.find(h => String(h.id) === String(record.hospitalId));
-                const donorUserName = users.find(u => String(u.id) === String(donorId))?.name || "A donor";
-
+                 const donorUser = users.find(u => String(u.id) === String(donor.userId));
+                 const donorUserName = donorUser ?.name || "A donor";
                 await api.delete(`/history/${record.id}`);
 
                 if (hospitalEntry) {

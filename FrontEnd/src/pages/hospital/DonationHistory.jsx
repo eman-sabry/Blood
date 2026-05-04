@@ -52,7 +52,7 @@ export default function DonationHistoryPage() {
   }
 
   return (
-    <div className="p-8 max-w-7xl mx-auto space-y-8  min-h-screen">
+    <div className="p-8 max-w-7xl mx-auto space-y-8 mt-10 md:mt-0  min-h-screen">
       {/* HEADER */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-6">
         <div className="flex flex-col justify-center items-center w-full">
@@ -83,7 +83,6 @@ export default function DonationHistoryPage() {
                 <th className="p-4 text-xs font-bold text-gray-400 uppercase tracking-wider">
                   Date
                 </th>
-               
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-50">
@@ -134,8 +133,6 @@ export default function DonationHistoryPage() {
                         })}
                       </div>
                     </td>
-
-                
                   </tr>
                 ))
               ) : (

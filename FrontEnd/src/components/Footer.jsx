@@ -35,10 +35,11 @@ export function FooterWithLogo() {
         </div>
         <div className="flex flex-col gap-3">
           <h3 className="font-semibold text-gray-700">Join Us</h3>
-
-          <button className="bg-gradient-to-r from-red-500 to-pink-500 text-white px-4 py-2 rounded-lg hover:from-red-600 hover:to-pink-600 transition">
-            Register Now
-          </button>
+          <Link to="/signup">
+            <button className="bg-gradient-to-r from-red-500 to-pink-500 text-white px-4 py-2 rounded-lg hover:from-red-600 hover:to-pink-600 transition">
+              Register Now
+            </button>
+          </Link>
         </div>
       </div>
 

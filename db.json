@@ -1,0 +1,726 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "firebase_uid": "UID_ADMIN_1",
+      "name": "Super Admin",
+      "email": "admin@bloodbank.com",
+      "phone": "01011111111",
+      "role": "admin"
+    },
+    {
+      "id": "2",
+      "firebase_uid": "UID_HOSP_1",
+      "name": "Kasr Al-Ainy",
+      "email": "info@kasralainy.com",
+      "phone": "01033333333",
+      "role": "hospital"
+    },
+    {
+      "id": "3",
+      "firebase_uid": "UID_DONOR_1",
+      "name": "Ahmed Ali",
+      "email": "ahmed@gmail.com",
+      "phone": "01110001111",
+      "role": "donor"
+    },
+    {
+      "firebase_uid": "YOjY38MyByMszrDPO8OX9lhB9lG3",
+      "name": "eman sabry ibrahim",
+      "email": "em012378679000777000o@gmail.com",
+      "user_type": "donor",
+      "status": "approved",
+      "id": "j9ExTvwIvX0"
+    },
+    {
+      "firebase_uid": "WPSgx9GZe2RJy5d5rzKozlQdc0E3",
+      "name": "eman sabry ibrahim",
+      "email": "em012376790006677700000o@gmail.com",
+      "role": "donor",
+      "status": "approved",
+      "image": "https://res.cloudinary.com/dfo85ox6y/image/upload/v1777334211/ah5brzdcndi95xbpfezs.png",
+      "id": "76xTpXD71QU"
+    },
+    {
+      "firebase_uid": "GU1q0u7InNTPSPpuECZ3ukCXtii2",
+      "name": "eman sabry ibrahim",
+      "email": "em012376790006677700000o00@gmail.com",
+      "role": "donor",
+      "status": "approved",
+      "image": "https://res.cloudinary.com/dfo85ox6y/image/upload/v1777334300/vwanf0czkthwxo0bvhqh.png",
+      "id": "pHuWOLbPmDU"
+    },
+    {
+      "firebase_uid": "z8k606MSRve8DTmZICKOJ0jAuM62",
+      "name": "eman sabry ibrahim",
+      "email": "em012376790006677700000o0110@gmail.com",
+      "role": "donor",
+      "status": "approved",
+      "image": "https://res.cloudinary.com/dfo85ox6y/image/upload/v1777334504/q56dobujduq5dz11odaf.png",
+      "id": "GEFi_qmq_1c"
+    },
+    {
+      "firebase_uid": "wBF48SIrzegilHPMbP0u5mKIBB62",
+      "uid": "wBF48SIrzegilHPMbP0u5mKIBB62",
+      "name": "eman sabry ibrahim",
+      "email": "em012376790006677700000o01110@gmail.com",
+      "role": "donor",
+      "status": "approved",
+      "image": "https://res.cloudinary.com/dfo85ox6y/image/upload/v1777334783/qbkh6fhmfsh3d0dfnbna.png",
+      "createdAt": "2026-04-28T00:06:26.622Z",
+      "id": "ryVl-4V4WFM"
+    },
+    {
+      "firebase_uid": "ptvRxHA0nOXt1yBV6EORIzfdDi43",
+      "email": "salamy@gmail.com",
+      "role": "hospital",
+      "status": "pending",
+      "phone": "01070965511",
+      "id": "jGS7T6iWJXY"
+    },
+    {
+      "firebase_uid": "7KM38keIZxfIYas3cpjb8IZGW853",
+      "email": "salamdy@gmail.com",
+      "role": "hospital",
+      "status": "pending",
+      "phone": "01070965511",
+      "id": "rTaQQFYf0SY"
+    },
+    {
+      "firebase_uid": "26DlV868p7YlOVFvSnQoPpGSOAr1",
+      "uid": "26DlV868p7YlOVFvSnQoPpGSOAr1",
+      "name": "eman sabry ibrahim",
+      "email": "em321@gmail.com",
+      "role": "donor",
+      "status": "approved",
+      "image": "https://res.cloudinary.com/dfo85ox6y/image/upload/v1777399408/qdeebx407yvpuvv32lt0.png",
+      "createdAt": "2026-04-28T18:03:30.628Z",
+      "id": "m_HQvugr0PY"
+    },
+    {
+      "firebase_uid": "oJaOQlOJZqZuA0qzOQEkoSUprR92",
+      "uid": "oJaOQlOJZqZuA0qzOQEkoSUprR92",
+      "name": "eman sabry ibrahim",
+      "email": "em456@gmail.com",
+      "role": "donor",
+      "status": "approved",
+      "image": "https://res.cloudinary.com/dfo85ox6y/image/upload/v1777418541/zv5woqf8qwcacopx7pcw.png",
+      "createdAt": "2026-04-28T23:22:23.393Z",
+      "id": "20Lu4-Yr1Ps"
+    },
+    {
+      "firebase_uid": "xt1YHQ7lNWfMecn3TnQcZsSSKy23",
+      "uid": "xt1YHQ7lNWfMecn3TnQcZsSSKy23",
+      "name": "emo",
+      "email": "em4567@gmail.com",
+      "role": "donor",
+      "status": "approved",
+      "image": "https://res.cloudinary.com/dfo85ox6y/image/upload/v1777420345/gp8q02mpzzwjf8ld2gxj.png",
+      "createdAt": "2026-04-28T23:52:27.137Z",
+      "id": "mgeAJZqieKk"
+    },
+    {
+      "firebase_uid": "VIKmTlEfhaXz54Nv38HWl764DUj1",
+      "email": "kilobatra@gmail.com",
+      "role": "hospital",
+      "status": "approved",
+      "phone": "01070965511",
+      "id": "c1kFue5T3wU"
+    }
+  ],
+  "donors": [
+    {
+      "id": "1",
+      "user_id": 3,
+      "uid": "UID_DONOR_1",
+      "name": "Ahmed Ali",
+      "email": "ahmed@gmail.com",
+      "age": 25,
+      "weight": 75,
+      "height": 180,
+      "bloodType": "O+",
+      "gender": "Male",
+      "lastDonation": "2023-12-10",
+      "diseases": "None",
+      "address": "Cairo, Egypt",
+      "donationsCount": 5,
+      "image": "https://example.com/donor1.jpg"
+    },
+    {
+      "firebase_uid": "WPSgx9GZe2RJy5d5rzKozlQdc0E3",
+      "name": "eman sabry ibrahim",
+      "email": "em012376790006677700000o@gmail.com",
+      "age": 21,
+      "weight": 70,
+      "height": 160,
+      "bloodType": "B+",
+      "gender": "Male",
+      "lastDonation": "2026-04-02",
+      "diseases": "no",
+      "address": "5, Mohamed Taha Street, Giza, 12552, Egypt",
+      "donationsCount": 0,
+      "image": "https://res.cloudinary.com/dfo85ox6y/image/upload/v1777334211/ah5brzdcndi95xbpfezs.png",
+      "id": "oFmF5sMT9Bo"
+    },
+    {
+      "firebase_uid": "GU1q0u7InNTPSPpuECZ3ukCXtii2",
+      "name": "eman sabry ibrahim",
+      "email": "em012376790006677700000o00@gmail.com",
+      "age": 21,
+      "weight": 70,
+      "height": 160,
+      "bloodType": "A+",
+      "gender": "Male",
+      "lastDonation": "2026-04-02",
+      "diseases": "no",
+      "address": "5, Mohamed Taha Street, Giza, 12552, Egypt",
+      "donationsCount": 0,
+      "image": "https://res.cloudinary.com/dfo85ox6y/image/upload/v1777334300/vwanf0czkthwxo0bvhqh.png",
+      "id": "7WjST9ZcAD4"
+    },
+    {
+      "firebase_uid": "z8k606MSRve8DTmZICKOJ0jAuM62",
+      "name": "eman sabry ibrahim",
+      "email": "em012376790006677700000o0110@gmail.com",
+      "age": 21,
+      "weight": 70,
+      "height": 160,
+      "bloodType": "A-",
+      "gender": "Male",
+      "lastDonation": "2026-04-02",
+      "diseases": "no",
+      "address": "5, Mohamed Taha Street, Giza, 12552, Egypt",
+      "donationsCount": 0,
+      "image": "https://res.cloudinary.com/dfo85ox6y/image/upload/v1777334504/q56dobujduq5dz11odaf.png",
+      "id": "Nd0iSMNPdu8"
+    },
+    {
+      "firebase_uid": "wBF48SIrzegilHPMbP0u5mKIBB62",
+      "uid": "wBF48SIrzegilHPMbP0u5mKIBB62",
+      "name": "eman sabry ibrahim",
+      "email": "em012376790006677700000o01110@gmail.com",
+      "age": 21,
+      "weight": 70,
+      "height": 160,
+      "bloodType": "A-",
+      "gender": "Male",
+      "lastDonation": "2025-04-02",
+      "diseases": "no",
+      "address": "5, Mohamed Taha Street, Giza, 12552, Egypt",
+      "donationsCount": 0,
+      "image": "https://res.cloudinary.com/dfo85ox6y/image/upload/v1777334783/qbkh6fhmfsh3d0dfnbna.png",
+      "id": "r0T1LEfUV2k"
+    },
+    {
+      "firebase_uid": "26DlV868p7YlOVFvSnQoPpGSOAr1",
+      "uid": "26DlV868p7YlOVFvSnQoPpGSOAr1",
+      "name": "eman sabry ibrahim",
+      "email": "em321@gmail.com",
+      "age": 21,
+      "weight": 70,
+      "height": 160,
+      "bloodType": "A-",
+      "gender": "Female",
+      "lastDonation": "2026-04-29T21:29:51.205Z",
+      "diseases": "no",
+      "address": "5, Mohamed Taha Street, Giza, 12552, Egypt",
+      "donationsCount": 3,
+      "image": "https://res.cloudinary.com/dfo85ox6y/image/upload/v1777399408/qdeebx407yvpuvv32lt0.png",
+      "id": "PzeA0RoLdwk"
+    },
+    {
+      "firebase_uid": "oJaOQlOJZqZuA0qzOQEkoSUprR92",
+      "uid": "oJaOQlOJZqZuA0qzOQEkoSUprR92",
+      "name": "eman sabry ibrahim",
+      "email": "em456@gmail.com",
+      "age": 21,
+      "weight": 70,
+      "height": 160,
+      "bloodType": "B+",
+      "gender": "Male",
+      "lastDonation": "2026-04-30T08:20:40.619Z",
+      "diseases": "no",
+      "address": "1`, Khatem Al Morsalin Street, Egypt Bank Towers, Giza, 12552, Egypt",
+      "donationsCount": 2,
+      "image": "https://res.cloudinary.com/dfo85ox6y/image/upload/v1777418541/zv5woqf8qwcacopx7pcw.png",
+      "id": "8lSj_nEDQcI"
+    },
+    {
+      "firebase_uid": "xt1YHQ7lNWfMecn3TnQcZsSSKy23",
+      "uid": "xt1YHQ7lNWfMecn3TnQcZsSSKy23",
+      "name": "emo",
+      "email": "em4567@gmail.com",
+      "age": 21,
+      "weight": 70,
+      "height": 160,
+      "bloodType": "A+",
+      "gender": "Female",
+      "lastDonation": "2025-04-29T16:43:34.164Z",
+      "diseases": "no",
+      "address": "Estern Company الشرقية للدخان, Mohamed Taha Street, Giza, 12555, Egypt",
+      "lat": 29.999456352668844,
+      "lng": 31.18856014102337,
+      "donationsCount": 10,
+      "image": "https://res.cloudinary.com/dfo85ox6y/image/upload/v1777420345/gp8q02mpzzwjf8ld2gxj.png",
+      "id": "bHZ9uhkgM18"
+    }
+  ],
+  "hospitals": [
+    {
+      "firebase_uid": "ptvRxHA0nOXt1yBV6EORIzfdDi43",
+      "hospitalName": "al-salam",
+      "phone": "01070965511",
+      "licenseNumber": "1234",
+      "address": "5, Mohamed Taha Street, Giza, 12552, Egypt",
+      "lat": 29.999456352668844,
+      "lng": 31.18856014102337,
+      "uid": "ptvRxHA0nOXt1yBV6EORIzfdDi43",
+      "id": "-E4mKcVgcLQ"
+    },
+    {
+      "firebase_uid": "VIKmTlEfhaXz54Nv38HWl764DUj1",
+      "hospitalName": "kilobatra",
+      "phone": "01070965511",
+      "licenseNumber": "1234",
+      "address": "Estern Company الشرقية للدخان, Borham Street, Giza, 12552, Egypt",
+      "location": {
+        "lat": 29.999321326980475,
+        "lng": 31.188533746067336
+      },
+      "lat": 29.999321326980475,
+      "lng": 31.188533746067336,
+      "uid": "VIKmTlEfhaXz54Nv38HWl764DUj1",
+      "id": "rNJOpSbfHNs"
+    }
+  ],
+  "admins": [
+    {
+      "id": "1",
+      "user_id": 1,
+      "uid": "UID_ADMIN_1",
+      "name": "Super Admin",
+      "secretCode": "1234"
+    }
+  ],
+  "bloodRequests": [
+    {
+      "id": "65c9",
+      "hospitalId": "ptvRxHA0nOXt1yBV6EORIzfdDi43",
+      "hospitalName": "al-salam",
+      "bloodTypeNeeded": "A+",
+      "quantity": 1,
+      "status": "Pending",
+      "createdAt": "2026-04-30T04:54:18.654Z",
+      "acceptedDonors": [
+        {
+          "donorId": "xt1YHQ7lNWfMecn3TnQcZsSSKy23",
+          "donorName": "emo",
+          "bloodType": "A+",
+          "acceptedAt": "2026-04-30T05:13:31.992Z",
+          "status": "OnTheWay",
+          "confirmedAt": "2026-04-30T05:13:33.637Z"
+        }
+      ]
+    },
+    {
+      "id": "2f86",
+      "hospitalId": "ptvRxHA0nOXt1yBV6EORIzfdDi43",
+      "hospitalName": "al-salam",
+      "bloodTypeNeeded": "B+",
+      "quantity": 3,
+      "status": "Pending",
+      "createdAt": "2026-04-30T04:54:22.772Z"
+    },
+    {
+      "id": "9d11",
+      "hospitalId": "ptvRxHA0nOXt1yBV6EORIzfdDi43",
+      "hospitalName": "al-salam",
+      "bloodTypeNeeded": "A-",
+      "quantity": 2,
+      "status": "Pending",
+      "createdAt": "2026-04-30T04:54:28.645Z"
+    },
+    {
+      "id": "223f",
+      "hospitalId": "ptvRxHA0nOXt1yBV6EORIzfdDi43",
+      "hospitalName": "al-salam",
+      "bloodTypeNeeded": "B-",
+      "quantity": 1,
+      "status": "Pending",
+      "createdAt": "2026-04-30T04:54:33.038Z"
+    },
+    {
+      "id": "4909",
+      "hospitalId": "ptvRxHA0nOXt1yBV6EORIzfdDi43",
+      "hospitalName": "al-salam",
+      "bloodTypeNeeded": "AB+",
+      "quantity": 2,
+      "status": "Pending",
+      "createdAt": "2026-04-30T04:56:17.102Z"
+    },
+    {
+      "id": "a25f",
+      "hospitalId": "ptvRxHA0nOXt1yBV6EORIzfdDi43",
+      "hospitalName": "al-salam",
+      "bloodTypeNeeded": "O+",
+      "quantity": 3,
+      "status": "Pending",
+      "createdAt": "2026-04-30T04:56:59.726Z"
+    },
+    {
+      "id": "3050",
+      "hospitalId": "ptvRxHA0nOXt1yBV6EORIzfdDi43",
+      "hospitalName": "al-salam",
+      "bloodTypeNeeded": "B+",
+      "quantity": 5,
+      "status": "Pending",
+      "createdAt": "2026-04-30T04:57:29.653Z"
+    },
+    {
+      "id": "8fa6",
+      "hospitalId": "ptvRxHA0nOXt1yBV6EORIzfdDi43",
+      "hospitalName": "al-salam",
+      "bloodTypeNeeded": "A+",
+      "quantity": 3,
+      "status": "Pending",
+      "createdAt": "2026-04-30T05:01:02.481Z",
+      "acceptedDonors": []
+    },
+    {
+      "id": "74a2",
+      "hospitalId": "ptvRxHA0nOXt1yBV6EORIzfdDi43",
+      "hospitalName": "al-salam",
+      "bloodTypeNeeded": "AB-",
+      "quantity": 3,
+      "status": "Pending",
+      "createdAt": "2026-04-30T05:05:47.663Z"
+    }
+  ],
+  "bloodStock": [
+    {
+      "id": "3766",
+      "hospitalId": "ptvRxHA0nOXt1yBV6EORIzfdDi43",
+      "bloodType": "B+",
+      "quantity": 4,
+      "expiryDate": "2026-05-03T03:55:42.404Z"
+    },
+    {
+      "id": "8dac",
+      "hospitalId": "ptvRxHA0nOXt1yBV6EORIzfdDi43",
+      "bloodType": "O-",
+      "quantity": 5,
+      "expiryDate": "2026-06-11T03:56:35.371Z"
+    },
+    {
+      "id": "03bd",
+      "hospitalId": "ptvRxHA0nOXt1yBV6EORIzfdDi43",
+      "bloodType": "AB+",
+      "quantity": 9,
+      "expiryDate": "2026-06-11T03:56:42.959Z"
+    },
+    {
+      "id": "b4dd",
+      "hospitalId": "ptvRxHA0nOXt1yBV6EORIzfdDi43",
+      "bloodType": "B-",
+      "quantity": 9,
+      "expiryDate": "2026-06-11T04:32:31.461Z"
+    },
+    {
+      "id": "255b",
+      "hospitalId": "ptvRxHA0nOXt1yBV6EORIzfdDi43",
+      "bloodType": "A+",
+      "quantity": 1,
+      "expiryDate": "2026-06-11T05:31:01.641Z"
+    },
+    {
+      "id": "3aa6",
+      "hospitalId": "ptvRxHA0nOXt1yBV6EORIzfdDi43",
+      "bloodType": "A+",
+      "quantity": 1,
+      "expiryDate": "2026-06-11T05:35:48.428Z",
+      "receivedDate": "2026-04-30T05:35:48.428Z"
+    },
+    {
+      "id": "5d1e",
+      "hospitalId": "ptvRxHA0nOXt1yBV6EORIzfdDi43",
+      "bloodType": "B+",
+      "quantity": 1,
+      "expiryDate": "2026-06-11T08:20:40.598Z",
+      "receivedDate": "2026-04-30T08:20:40.598Z"
+    }
+  ],
+  "donationHistory": [
+    {
+      "id": "22f3",
+      "requestId": "65c9",
+      "donorId": "xt1YHQ7lNWfMecn3TnQcZsSSKy23",
+      "donorName": "emo",
+      "bloodType": "A+",
+      "hospitalId": "ptvRxHA0nOXt1yBV6EORIzfdDi43",
+      "status": "Completed",
+      "date": "2026-04-30T05:31:01.601Z",
+      "reason": "Successfully Donated"
+    },
+    {
+      "id": "c197",
+      "requestId": "65c9",
+      "donorId": "xt1YHQ7lNWfMecn3TnQcZsSSKy23",
+      "donorName": "emo",
+      "bloodType": "A+",
+      "hospitalId": "ptvRxHA0nOXt1yBV6EORIzfdDi43",
+      "status": "Cancelled",
+      "date": "2026-04-30T05:31:12.586Z",
+      "reason": "Cancelled by Hospital"
+    },
+    {
+      "id": "68fc",
+      "requestId": "65c9",
+      "donorId": "xt1YHQ7lNWfMecn3TnQcZsSSKy23",
+      "donorName": "emo",
+      "bloodType": "A+",
+      "hospitalId": "ptvRxHA0nOXt1yBV6EORIzfdDi43",
+      "status": "Cancelled",
+      "date": "2026-04-30T05:33:29.273Z",
+      "reason": "Cancelled by Hospital"
+    },
+    {
+      "id": "19ec",
+      "donorId": "xt1YHQ7lNWfMecn3TnQcZsSSKy23",
+      "requestId": "65c9",
+      "hospitalId": "ptvRxHA0nOXt1yBV6EORIzfdDi43",
+      "hospitalName": "al-salam",
+      "bloodType": "A+",
+      "date": "2026-04-30T08:00:10.892Z",
+      "status": "Cancelled",
+      "completedDate": "2026-04-30T08:19:00.909Z",
+      "reason": "Cancelled by Hospital"
+    },
+    {
+      "id": "a1cc",
+      "donorId": "oJaOQlOJZqZuA0qzOQEkoSUprR92",
+      "requestId": "3050",
+      "hospitalId": "ptvRxHA0nOXt1yBV6EORIzfdDi43",
+      "hospitalName": "al-salam",
+      "bloodType": "B+",
+      "date": "2026-04-30T08:17:33.307Z",
+      "status": "Completed",
+      "completedDate": "2026-04-30T08:20:40.546Z",
+      "reason": "Successfully Donated"
+    }
+  ],
+  "notifications": [
+    {
+      "uid": "xt1YHQ7lNWfMecn3TnQcZsSSKy23",
+      "message": "Thank you for donating at al-salam. Your donation can save lives ❤️",
+      "status": "Read",
+      "createdAt": "2026-04-29T14:10:18.892Z",
+      "requestId": "kjL-gUFz0zI",
+      "type": "thank_you",
+      "id": "FssfY_jCVD4"
+    },
+    {
+      "uid": "26DlV868p7YlOVFvSnQoPpGSOAr1",
+      "message": "Thank you for donating at al-salam. Your donation can save lives ❤️",
+      "status": "Read",
+      "createdAt": "2026-04-29T14:22:52.024Z",
+      "requestId": "Dd_g_zaycvA",
+      "type": "thank_you",
+      "id": "mhTccKtCyNk"
+    },
+    {
+      "uid": "xt1YHQ7lNWfMecn3TnQcZsSSKy23",
+      "message": "Thank you for donating at al-salam. Your donation can save lives ❤️",
+      "status": "Read",
+      "createdAt": "2026-04-29T14:25:23.892Z",
+      "requestId": "YqTpTig4nkU",
+      "type": "thank_you",
+      "id": "epPRczNED9w"
+    },
+    {
+      "uid": "xt1YHQ7lNWfMecn3TnQcZsSSKy23",
+      "message": "Thank you for donating at al-salam. Your donation can save lives ❤️",
+      "status": "Read",
+      "createdAt": "2026-04-29T14:32:14.321Z",
+      "requestId": "RM8aYf-2_-k",
+      "type": "thank_you",
+      "id": "m06kFS5-nno"
+    },
+    {
+      "uid": "xt1YHQ7lNWfMecn3TnQcZsSSKy23",
+      "message": "Thank you for donating at al-salam. Your donation can save lives ❤️",
+      "status": "Read",
+      "createdAt": "2026-04-29T14:50:54.591Z",
+      "requestId": "nbtdFxBO1qs",
+      "type": "thank_you",
+      "id": "IGguRj4k_Ww"
+    },
+    {
+      "uid": "26DlV868p7YlOVFvSnQoPpGSOAr1",
+      "message": "Thank you for donating at al-salam. Your donation can save lives ❤️",
+      "status": "Read",
+      "createdAt": "2026-04-29T15:00:19.471Z",
+      "requestId": "Ud96DzNRYG0",
+      "type": "thank_you",
+      "id": "q8zF2j4xO2U"
+    },
+    {
+      "uid": "xt1YHQ7lNWfMecn3TnQcZsSSKy23",
+      "message": "Thank you for donating at al-salam. Your donation can save lives ❤️",
+      "status": "Read",
+      "createdAt": "2026-04-29T15:38:10.325Z",
+      "requestId": "V0wK3iZPX3w",
+      "type": "thank_you",
+      "id": "h20IsW_FxXQ"
+    },
+    {
+      "uid": "xt1YHQ7lNWfMecn3TnQcZsSSKy23",
+      "message": "Thank you for donating at kilobatra. Your donation can save lives ❤️",
+      "status": "Read",
+      "createdAt": "2026-04-29T16:09:49.119Z",
+      "requestId": "roClsWk-TwA",
+      "type": "thank_you",
+      "id": "ICb9X1iJEA8"
+    },
+    {
+      "uid": "xt1YHQ7lNWfMecn3TnQcZsSSKy23",
+      "message": "Thank you for donating at kilobatra. Your donation can save lives ❤️",
+      "status": "Read",
+      "createdAt": "2026-04-29T16:43:34.151Z",
+      "requestId": "i5RViEgGOVU",
+      "type": "thank_you",
+      "id": "ecflXT6op38"
+    },
+    {
+      "id": "40df",
+      "uid": "26DlV868p7YlOVFvSnQoPpGSOAr1",
+      "message": "Thank you for donating at kilobatra. Your donation can save lives ❤️",
+      "status": "Unread",
+      "createdAt": "2026-04-29T21:29:51.180Z",
+      "requestId": "838b",
+      "type": "thank_you"
+    },
+    {
+      "id": "452e",
+      "uid": "26DlV868p7YlOVFvSnQoPpGSOAr1",
+      "message": "Thank you for donating at undefined. Your donation can save lives ❤️",
+      "status": "Unread",
+      "createdAt": "2026-04-29T21:29:55.226Z",
+      "requestId": "7033",
+      "type": "thank_you"
+    },
+    {
+      "id": "ebe9",
+      "uid": "oJaOQlOJZqZuA0qzOQEkoSUprR92",
+      "message": "Thank you for donating at kilobatra. Your donation can save lives ❤️",
+      "status": "Read",
+      "createdAt": "2026-04-29T21:55:27.057Z",
+      "requestId": "PQn6yKGW-Tg",
+      "type": "thank_you"
+    },
+    {
+      "id": "2a88",
+      "uid": "oJaOQlOJZqZuA0qzOQEkoSUprR92",
+      "message": "We're sorry you couldn't donate today at al-salam due to health reasons. Your safety comes first!",
+      "status": "Read",
+      "createdAt": "2026-04-30T03:22:04.916Z",
+      "requestId": "928c",
+      "type": "health_update"
+    },
+    {
+      "id": "63cc",
+      "uid": "oJaOQlOJZqZuA0qzOQEkoSUprR92",
+      "message": "We're sorry you couldn't donate today at al-salam due to health reasons. Your safety comes first!",
+      "status": "Read",
+      "createdAt": "2026-04-30T03:22:37.162Z",
+      "requestId": "7e9c",
+      "type": "health_update"
+    },
+    {
+      "id": "fc48",
+      "uid": "oJaOQlOJZqZuA0qzOQEkoSUprR92",
+      "message": "Your donation was cancelled due to health reasons. Safety first!",
+      "type": "status_update",
+      "createdAt": "2026-04-30T03:26:29.910Z"
+    },
+    {
+      "id": "dc2b",
+      "uid": "oJaOQlOJZqZuA0qzOQEkoSUprR92",
+      "message": "Your donation was cancelled due to health reasons. Safety first!",
+      "type": "status_update",
+      "createdAt": "2026-04-30T03:27:36.245Z"
+    },
+    {
+      "id": "fdbd",
+      "uid": "ptvRxHA0nOXt1yBV6EORIzfdDi43",
+      "message": "Donor emo has cancelled their donation trip.",
+      "type": "WARNING",
+      "time": "2026-04-30T08:00:09.502Z",
+      "status": "Read"
+    },
+    {
+      "id": "d8b2",
+      "uid": "ptvRxHA0nOXt1yBV6EORIzfdDi43",
+      "message": "Donor emo is on the way to donate A+ blood.",
+      "type": "INFO",
+      "time": "2026-04-30T08:00:10.930Z",
+      "status": "Read"
+    },
+    {
+      "id": "9fea",
+      "uid": "ptvRxHA0nOXt1yBV6EORIzfdDi43",
+      "message": "Donor eman sabry ibrahim is on the way to donate B+ blood.",
+      "type": "INFO",
+      "time": "2026-04-30T08:08:23.520Z",
+      "status": "Read"
+    },
+    {
+      "id": "8781",
+      "uid": "ptvRxHA0nOXt1yBV6EORIzfdDi43",
+      "message": "Donor eman sabry ibrahim has cancelled their donation trip.",
+      "type": "WARNING",
+      "time": "2026-04-30T08:08:28.349Z",
+      "status": "Read"
+    },
+    {
+      "id": "9301",
+      "uid": "ptvRxHA0nOXt1yBV6EORIzfdDi43",
+      "message": "Donor eman sabry ibrahim is on the way to donate B+ blood.",
+      "type": "INFO",
+      "time": "2026-04-30T08:08:33.024Z",
+      "status": "Read"
+    },
+    {
+      "id": "e25a",
+      "uid": "ptvRxHA0nOXt1yBV6EORIzfdDi43",
+      "message": "Donor eman sabry ibrahim has cancelled their donation trip.",
+      "type": "WARNING",
+      "time": "2026-04-30T08:17:31.882Z",
+      "status": "Read"
+    },
+    {
+      "id": "0474",
+      "uid": "ptvRxHA0nOXt1yBV6EORIzfdDi43",
+      "message": "Donor eman sabry ibrahim is on the way to donate B+ blood.",
+      "type": "INFO",
+      "time": "2026-04-30T08:17:33.352Z",
+      "status": "Read"
+    },
+    {
+      "id": "da33",
+      "uid": "xt1YHQ7lNWfMecn3TnQcZsSSKy23",
+      "message": "Your donation session was cancelled by the hospital.",
+      "type": "WARNING",
+      "time": "2026-04-30T08:19:00.949Z",
+      "status": "Unread"
+    },
+    {
+      "id": "6034",
+      "uid": "oJaOQlOJZqZuA0qzOQEkoSUprR92",
+      "message": "Thank you! Your donation was successful.",
+      "type": "SUCCESS",
+      "time": "2026-04-30T08:20:40.660Z",
+      "status": "Read"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

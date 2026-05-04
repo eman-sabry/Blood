@@ -16,109 +16,123 @@ export function useAdminData() {
     const queryClient = useQueryClient();
     const [searchTerm, setSearchTerm] = useState("");
 
-    // جلب كل المتبرعين
-    const donorsQuery = useQuery({
-        queryKey: ["admin", "donors"],
-        queryFn: async () => (await api.get("/donors")).data,
+    // 1. جلب بيانات المستخدمين الأساسية
+    const {
+        data: users = []
+    } = useQuery({
+        queryKey: ["admin", "users"],
+        queryFn: async () => (await api.get("/users")).data,
     });
 
-    // جلب كل المستشفيات
+    // 2. جلب الجداول الفرعية
     const hospitalsQuery = useQuery({
         queryKey: ["admin", "hospitals"],
         queryFn: async () => (await api.get("/hospitals")).data,
+        initialData: []
     });
 
-    // جلب طلبات الدم النشطة فقط
+    const donorsQuery = useQuery({
+        queryKey: ["admin", "donors"],
+        queryFn: async () => (await api.get("/donors")).data,
+        initialData: []
+    });
+
     const requestsQuery = useQuery({
         queryKey: ["admin", "requests"],
-        queryFn: async () => {
-            const res = await api.get("/requests");
-            // تصفية الطلبات المكتملة أو الملغية لعرض النشط فقط في "Live Requests"
-            return res.data.filter((r) => !["Completed", "Rejected"].includes(r.status));
-        },
+        queryFn: async () => (await api.get("/requests")).data,
+        initialData: []
     });
 
-    // جلب سجل العمليات
-    const historyQuery = useQuery({
-        queryKey: ["admin", "history"],
-        queryFn: async () => (await api.get("/history")).data,
-    });
+    const getUserById = (userId) => users.find(u => String(u.id) === String(userId)) || {};
 
-    // منطق التحديث (Update/Approve)
-    const upsertHospital = useMutation({
-        mutationFn: async (hospital) => {
-            return await api.put(`/hospitals/${hospital.id}`, hospital);
+    // تفعيل الحساب
+    const approveMutation = useMutation({
+        mutationFn: async (hospitalId) => {
+            const hospital = hospitalsQuery.data.find(h => h.id === hospitalId);
+            if (!hospital ?.userId) throw new Error("User ID not found");
+            return await api.patch(`/users/${hospital.userId}`, {
+                status: "approved"
+            });
         },
         onSuccess: () => {
-            queryClient.invalidateQueries(["admin", "hospitals"]);
-            toast.success("Hospital status updated!");
+            queryClient.invalidateQueries(["admin"]);
+            toast.success("Hospital account activated successfully! 🎉");
         },
+        onError: () => toast.error("Update failed.")
     });
 
-    // منطق الحذف العام
-    const deleteItem = useMutation({
+    // حذف الحساب بالكامل (User + Profile)
+    const deleteMutation = useMutation({
         mutationFn: async ({
-            collection,
-            id
+            userId
         }) => {
-            await api.delete(`/${collection}/${id}`);
+            return await api.delete(`/users/${userId}`);
         },
-        onSuccess: (_, variables) => {
-            queryClient.invalidateQueries(["admin", variables.collection]);
-            toast.success("Deleted successfully!");
+        onSuccess: () => {
+            queryClient.invalidateQueries(["admin"]);
+            toast.success("User and all associated data deleted successfully");
         },
-        onError: () => toast.error("Failed to delete."),
+        onError: () => toast.error("Delete failed. Ensure server supports cascade delete.")
     });
 
-    // فلترة المتبرعين بناءً على البحث
-    const filteredDonors = useMemo(() => {
-        let data = donorsQuery.data || [];
-        if (searchTerm) {
-            data = data.filter(d =>
-                d.name ?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                d.bloodType ?.includes(searchTerm.toUpperCase())
-            );
-        }
-        return data;
-    }, [donorsQuery.data, searchTerm]);
+    const enrichedHospitals = useMemo(() => {
+        return (hospitalsQuery.data || []).map(h => {
+            const user = getUserById(h.userId);
+            return {
+                ...h,
+                displayName: user.name || "Unknown Hospital",
+                status: user.status || "pending"
+            };
+        }).filter(h => h.displayName.toLowerCase().includes(searchTerm.toLowerCase()));
+    }, [hospitalsQuery.data, users, searchTerm]);
 
-    // فلترة المستشفيات بناءً على البحث
-    const filteredHospitals = useMemo(() => {
-        let data = hospitalsQuery.data || [];
-        if (searchTerm) {
-            data = data.filter(h =>
-                h.hospitalName ?.toLowerCase().includes(searchTerm.toLowerCase())
-            );
-        }
-        return data;
-    }, [hospitalsQuery.data, searchTerm]);
+    const enrichedDonors = useMemo(() => {
+        return (donorsQuery.data || []).map(d => {
+            const user = getUserById(d.userId);
+            return {
+                ...d,
+                displayName: user.name || "Unknown Donor",
+                status: user.status || "active"
+            };
+        }).filter(d => d.displayName.toLowerCase().includes(searchTerm.toLowerCase()));
+    }, [donorsQuery.data, users, searchTerm]);
+
+    const enrichedRequests = useMemo(() => {
+        return (requestsQuery.data || []).map(req => {
+            const hospital = hospitalsQuery.data.find(h => h.id === req.hospitalId);
+            const hUser = hospital ? getUserById(hospital.userId) : {};
+            return {
+                ...req,
+                hospitalName: hUser.name || "Deleted Hospital",
+            };
+        });
+    }, [requestsQuery.data, hospitalsQuery.data, users]);
 
     return {
-        donors: filteredDonors,
-        hospitals: filteredHospitals,
-        requests: requestsQuery.data || [],
-        history: historyQuery.data || [],
+        donors: enrichedDonors,
+        hospitals: enrichedHospitals,
+        requests: enrichedRequests,
         search: {
             term: searchTerm,
             setTerm: setSearchTerm
-        },
-        isLoading: donorsQuery.isLoading || hospitalsQuery.isLoading || requestsQuery.isLoading,
+        }, 
+        searchTerm, 
+        setSearchTerm,
+        isLoading: hospitalsQuery.isLoading || donorsQuery.isLoading || requestsQuery.isLoading,
         actions: {
-            approveHospital: (hospital) => {
-                upsertHospital.mutate({
-                    ...hospital,
-                    isApproved: true,
-                    status: "approved"
+            approve: (id) => approveMutation.mutate(id),
+            deleteH: (hospitalId) => {
+                const target = hospitalsQuery.data.find(h => h.id === hospitalId);
+                if (target ?.userId) deleteMutation.mutate({
+                    userId: target.userId
                 });
             },
-            deleteHospital: (id) => deleteItem.mutate({
-                collection: "hospitals",
-                id
-            }),
-            deleteRequest: (id) => deleteItem.mutate({
-                collection: "requests",
-                id
-            }),
+            deleteD: (donorId) => {
+                const target = donorsQuery.data.find(d => d.id === donorId);
+                if (target ?.userId) deleteMutation.mutate({
+                    userId: target.userId
+                });
+            }
         }
     };
 }

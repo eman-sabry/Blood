@@ -46,7 +46,11 @@ export default function ExpiringStock({ expiringStock }) {
 
               {/* EXPIRY */}
               <div className="text-xs text-red-500 font-semibold">
-                {new Date(item.expiryDate).toLocaleDateString()}
+                {new Date(item.expiryDate).toLocaleDateString("en-GB", {
+                  day: "2-digit",
+                  month: "short",
+                  year: "numeric",
+                })}
               </div>
             </div>
           ))}

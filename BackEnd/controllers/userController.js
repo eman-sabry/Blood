@@ -20,6 +20,18 @@ exports.getAllUsers = async (req, res) => {
     }
 };
 
+
+// إضافة يوزر جديد بواسطة الأدمن
+exports.createUserByAdmin = async (req, res) => {
+    try {
+        const newUser = await User.create(req.body);
+        res.status(201).json(newUser);
+    } catch (err) {
+        res.status(400).json({
+            message: err.message
+        });
+    }
+};
 exports.getUserById = async (req, res) => {
     try {
         const user = await User.findByPk(req.params.id, {

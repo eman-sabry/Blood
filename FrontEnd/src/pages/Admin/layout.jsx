@@ -18,14 +18,14 @@ export default function AdminLayout() {
           <NavLink to="/admin/dashboard" className={linkClass}>
             <FaHome /> Dashboard
           </NavLink>
-
+          <NavLink to="/admin/profile" className={linkClass}>
+            <FaUser /> Profile
+          </NavLink>
           <NavLink to="/admin/users" className={linkClass}>
             <FaUser /> Users
           </NavLink>
 
-          <NavLink to="/admin/approvals" className={linkClass}>
-            <FaCheck /> Approvals
-          </NavLink>
+         
         </nav>
       </aside>
 

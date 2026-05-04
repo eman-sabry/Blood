@@ -69,9 +69,9 @@ const { notifications } = useDonorData(user?.userId );
   );
 
   return (
-    <div className="p-4 md:p-8 space-y-8 bg-gray-50 min-h-screen font-sans">
+    <div className="p-4 mt-20 md:mt-0 md:p-8 space-y-8 bg-gray-50 min-h-screen font-sans">
       {/* HEADER */}
-      <div className="flex flex-col md:flex-row gap-6 items-stretch">
+      <div className="flex flex-col lg:flex-row gap-6 items-stretch">
         <div className="flex-1 bg-gradient-to-r from-red-500 to-red-600 p-8 rounded-3xl shadow-lg text-white relative overflow-hidden">
           <div className="relative z-10">
             <h2 className="text-3xl font-bold mb-2">
