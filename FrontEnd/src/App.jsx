@@ -29,8 +29,10 @@ import DonationHistoryPage from "./pages/hospital/DonationHistory";
 import NotificationsPage from "./pages/notifications";
 import DonationManagement from "./pages/hospital/DonationManagement";
 import UsersPage from "./pages/Admin/UsersPage";
-
+import Information from "./pages/donor/Information";
 import Contact from "./pages/Contact";
+import AdminDonationHistory from "./pages/Admin/AdminDonationHistory";
+import AdminAllRequests from "./pages/Admin/AdminAllRequests";
 function App() {
   return (
     <div className="mt-10 ">
@@ -38,7 +40,7 @@ function App() {
         {/* ================= PUBLIC ROUTES ================= */}
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact/>} />
+        <Route path="/contact" element={<Contact />} />
 
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<RoleSelect />} />
@@ -63,6 +65,7 @@ function App() {
           <Route path="profile" element={<Profile />} />
           <Route path="requests" element={<Requests />} />
           <Route path="notifications" element={<NotificationsPage />} />
+          <Route path="Information" element={<Information />} />
         </Route>
 
         {/* ================= HOSPITAL ================= */}
@@ -96,9 +99,11 @@ function App() {
         >
           <Route index element={<Navigate to="dashboard" />} />
           <Route path="users" element={<UsersPage />} />
-      
+
           <Route path="dashboard" element={<AdminDashboard />} />
           <Route path="profile" element={<Profile />} />
+          <Route path="History" element={<AdminDonationHistory />} />
+          <Route path="Requests" element={<AdminAllRequests />} />
         </Route>
       </Routes>
     </div>

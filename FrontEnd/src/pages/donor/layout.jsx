@@ -5,6 +5,7 @@ import {
   FaHome,
   FaHandHoldingHeart,
   FaBars,
+  FaListAlt,
   FaTimes,
   FaRegBell,
 } from "react-icons/fa";
@@ -31,7 +32,7 @@ export default function DonorLayout() {
   return (
     <div className="flex  flex-col md:flex-row min-h-screen mt-16 md:mt-20  bg-gray-50">
       <div className="md:hidden  flex  items-center justify-between bg-white p-4 border-b border-gray-200 fixed top-16 left-0 w-full z-50 h-16">
-        <h1 className="text-red-500 font-bold text-xl"> Donor  Panel</h1>
+        <h1 className="text-red-500 font-bold text-xl"> Donor Panel</h1>
         <button
           onClick={toggleSidebar}
           className="text-black text-xl focus:outline-none"
@@ -82,6 +83,13 @@ export default function DonorLayout() {
             onClick={() => setIsOpen(false)}
           >
             <FaUser /> Profile
+          </NavLink>
+          <NavLink
+            to="/donor/Information"
+            className={linkClass}
+            onClick={() => setIsOpen(false)}
+          >
+              <FaListAlt /> Information
           </NavLink>
 
           <NavLink

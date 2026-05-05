@@ -6,6 +6,7 @@ import {
   FaHospital,
   FaMapMarkerAlt,
   FaPhoneAlt,
+  FaEnvelope,
 } from "react-icons/fa";
 import { useAdminData } from "../../Hooks/useAdminData";
 import Swal from "sweetalert2";
@@ -71,7 +72,7 @@ const handleDelete = (id, name) => {
     customClass: { popup: "rounded-[2rem]" },
   }).then((result) => {
     if (result.isConfirmed) {
-      // تنفيذ الحذف الفعلي
+    
       if (activeTab === "donors") {
         actions.deleteD(id);
       } else {
@@ -95,7 +96,7 @@ const handleDelete = (id, name) => {
     );
 
   return (
-    <div className="p-6 max-w-7xl mx-auto space-y-6">
+    <div className="p-6 max-w-7xl mx-auto space-y-6 mt-20 md:mt-0 ">
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white p-8 rounded-[2rem] shadow-sm border border-gray-50">
         <div>
@@ -203,6 +204,10 @@ const handleDelete = (id, name) => {
                       <div className="flex items-center gap-2 text-xs font-bold text-slate-600">
                         <FaPhoneAlt className="text-[10px] text-red-400" />
                         {item.User?.phone || item.phone || "No Phone"}
+                      </div>
+                      <div className="flex items-center gap-2 text-xs font-bold text-slate-600">
+                        <FaEnvelope className="text-[10px] text-red-400" />
+                        {item.User?.email || item.email || "No Phone"}
                       </div>
                       <div className="flex items-center gap-2 text-[10px] text-gray-400">
                         <FaMapMarkerAlt className="shrink-0" />

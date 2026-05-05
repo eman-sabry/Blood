@@ -20,13 +20,27 @@ const canDonateTo = (donorBlood, requestBlood) => {
     return compatibility[donorBlood]?.includes(requestBlood) || false;
 };
 
-const isNearby = (donor, hospital) => {
-    if (!donor?.lat || !donor?.lng || !hospital?.lat || !hospital?.lng) {
-        return true;
+const isNearby = (donor, hospital, maxDistanceKm = 0.5) => {
+    if (!donor ?.lat || !donor ?.lng || !hospital ?.lat || !hospital ?.lng) {
+        return true; // لو الإحداثيات ناقصة اعتبره قريب
     }
-    const dx = donor.lat - hospital.lat;
-    const dy = donor.lng - hospital.lng;
-    return Math.sqrt(dx * dx + dy * dy) <= 0.5;
+
+    const toRad = (deg) => deg * (Math.PI / 180);
+
+    const R = 6371; // نصف قطر الأرض بالكيلومترات
+    const dLat = toRad(hospital.lat - donor.lat);
+    const dLng = toRad(hospital.lng - donor.lng);
+    const lat1 = toRad(donor.lat);
+    const lat2 = toRad(hospital.lat);
+
+    const a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.sin(dLng / 2) * Math.sin(dLng / 2) * Math.cos(lat1) * Math.cos(lat2);
+
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const distance = R * c;
+
+    return distance <= maxDistanceKm;
 };
 
 export function useDonorData(donorId) {

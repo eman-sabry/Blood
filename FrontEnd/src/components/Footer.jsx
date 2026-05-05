@@ -29,9 +29,7 @@ export function FooterWithLogo() {
             Contact Us
           </Link>
 
-          <Link className="text-gray-500 hover:text-red-500" to="/faq">
-            FAQ
-          </Link>
+        
         </div>
         <div className="flex flex-col gap-3">
           <h3 className="font-semibold text-gray-700">Join Us</h3>

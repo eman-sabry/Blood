@@ -1,3 +1,4 @@
+import { FaTrash } from "react-icons/fa";
 export default function ActiveRequests({ activeRequests, handleDelete }) {
   return (
     <div className="p-6">
@@ -42,12 +43,13 @@ export default function ActiveRequests({ activeRequests, handleDelete }) {
                 </span>
 
                 {req.status === "Pending" && (
-                  <button
-                    onClick={() => handleDelete(req.id)}
-                    className="text-sm bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg"
-                  >
-                    Delete
-                  </button>
+                   <button
+                                          onClick={() => handleDelete(req.id)}
+                                          className="p-3 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-xl transition-colors"
+                                        >
+                                          <FaTrash size={14} />
+                                        </button>
+                  
                 )}
               </div>
             </div>

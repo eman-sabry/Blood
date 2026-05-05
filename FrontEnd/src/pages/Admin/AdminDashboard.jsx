@@ -14,14 +14,13 @@ import {
 import { FaDroplet } from "react-icons/fa6";
 import { useAdminData } from "../../Hooks/useAdminData";
 import Swal from "sweetalert2";
-
-// 1. مكون بطاقة الإحصائيات المطور (تفاعلي مع بياناتك)
+import AdminReports from "./AdminReports";
 const StatCard = ({ title, value, icon: Icon, color = "bg-gray-500" }) => {
   const textColor =
     typeof color === "string" ? color.replace("bg-", "text-") : "text-gray-500";
   return (
     <div className="group bg-white p-6 rounded-[2rem] shadow-sm border border-gray-100 flex items-center gap-5 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden relative">
-      {/* أيقونة خلفية كبيرة تعطي عمقاً بصرياً */}
+  
       <div
         className={`absolute -right-4 -bottom-4 opacity-[0.03] group-hover:opacity-[0.08] transition-opacity ${textColor}`}
       >
@@ -93,8 +92,7 @@ export default function AdminDashboard() {
     );
 
   return (
-    <div className="p-6 md:p-10  min-h-screen font-sans relative overflow-hidden">
-  
+    <div className="p-6 md:p-10 mt-20 md:mt-0  min-h-screen font-sans relative overflow-hidden">
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Header Section */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-10">
@@ -106,7 +104,7 @@ export default function AdminDashboard() {
               Control center for blood donation network
             </p>
           </div>
-         
+          <AdminReports/>
         </div>
 
         {/* 2. Stats Grid (ببياناتك الفعلية) */}
@@ -292,13 +290,16 @@ export default function AdminDashboard() {
                 {/* Requests Table */}
                 <div className="overflow-hidden rounded-[2rem] border border-gray-100 shadow-sm">
                   <table className="w-full text-left border-collapse bg-white">
-                    <thead className="bg-slate-800 text-white">
+                    <thead className="bg-slate-800 text-gray-400">
                       <tr>
                         <th className="p-6 font-black text-[10px] uppercase tracking-[0.2em]">
                           Hospital Entity
                         </th>
                         <th className="p-6 font-black text-[10px] uppercase tracking-[0.2em]">
                           Blood Type
+                        </th>
+                        <th className="p-6 font-black text-[10px] uppercase tracking-[0.2em]">
+                          quantity
                         </th>
                         <th className="p-6 font-black text-[10px] uppercase tracking-[0.2em]">
                           Current Status
@@ -325,8 +326,13 @@ export default function AdminDashboard() {
                             </div>
                           </td>
                           <td className="p-6">
-                            <span className="px-4 py-2 bg-red-600 text-white rounded-xl font-black text-xs shadow-md shadow-red-100">
+                            <span className="w-10 h-10 flex items-center justify-center bg-red-50 text-red-600 rounded-xl text-xs font-black border border-red-100">
                               {req.bloodTypeNeeded}
+                            </span>
+                          </td>
+                          <td className="p-6">
+                            <span className="w-10 h-10 flex items-center justify-center">
+                              {req.quantity}
                             </span>
                           </td>
                           <td className="p-6">
@@ -362,6 +368,7 @@ export default function AdminDashboard() {
           </div>
         </div>
       </div>
+
     </div>
   );
 }

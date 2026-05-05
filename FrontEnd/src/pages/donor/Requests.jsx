@@ -15,7 +15,7 @@ export default function RequestsPage() {
     stats,
     actions,
     loading,
-  } = useDonorData(user?.userId || user?.id);
+  } = useDonorData(user?.profileId || user?.id);
 
   if (loading) {
     return (
@@ -78,18 +78,38 @@ export default function RequestsPage() {
           </div>
         ) : (
           <div className="grid md:grid-cols-2 gap-4">
-            {compatibleRequests.map((req) => (
-              <BloodRequestCard
-                key={req.id}
-                request={req}
-                hasActiveTrip={onTheWayRequests?.length > 0}
-                canDonate={
-                  stats.canDonate && donor?.bloodType && req.bloodTypeNeeded
-                }
-                onDonate={actions.acceptRequest}
-                isAccepting={actions.isAccepting}
-              />
-            ))}
+            {compatibleRequests.map((req) => {
+              // 1. ابحث عن بيانات المستشفى المرتبطة بهذا الطلب
+              const hospital = hospitals?.find((h) => h.id === req.hospitalId);
+
+              // 2. دمج البيانات لضمان وصول الاسم والعنوان للكارد
+              const enrichedRequest = {
+                ...req,
+                hospitalName:
+                  hospital?.name || req.hospitalName || "Unknown Hospital",
+                hospitalAddress:
+                  hospital?.address ||
+                  req.hospitalAddress ||
+                  "Location not specified",
+              };
+
+              return (
+                <BloodRequestCard
+                  key={req.id}
+                  request={enrichedRequest} // نرسل الطلب المعدل
+                  hasActiveTrip={onTheWayRequests?.length > 0}
+                  canDonate={
+                    !!(
+                      stats?.canDonate &&
+                      donor?.bloodType &&
+                      req.bloodTypeNeeded
+                    )
+                  }
+                  onDonate={actions.acceptRequest}
+                  isAccepting={actions.isAccepting}
+                />
+              );
+            })}
           </div>
         )}
       </div>
