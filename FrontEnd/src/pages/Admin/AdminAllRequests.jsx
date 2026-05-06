@@ -39,10 +39,9 @@ export default function AdminAllRequests() {
         {/* Header Section */}
         <div className="mb-8">
           <h1 className="text-4xl font-bold flex items-center gap-2 mb-6">
-             Active Blood Requests
+             Blood Requests
           </h1>
 
-          {/* Filters Bar - التعديل هنا ليكون خارج الـ Grid */}
           <div className="flex flex-col md:flex-row gap-4 p-4 bg-white rounded-3xl shadow-sm border border-gray-100">
             <div className="flex-1 relative">
               <input

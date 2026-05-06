@@ -35,13 +35,15 @@ export default function DonorDashboard() {
     hasActiveTrip,
   } = useDonorData(user?.profileId||user?.id);
 const { notifications } = useDonorData(user?.userId );
-  if (loading)
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-red-500" />
-      </div>
-    );
-
+   if (loading)
+     return (
+       <div className="h-screen flex flex-col items-center justify-center gap-4">
+         <div className="w-12 h-12 border-4 border-red-500 border-t-transparent rounded-full animate-spin"></div>
+         <p className="text-gray-500 font-medium tracking-widest uppercase text-xs">
+           Loading....
+         </p>
+       </div>
+     );
   if (!user && !loading)
     return (
       <div className="flex items-center justify-center min-h-screen">
@@ -69,7 +71,7 @@ const { notifications } = useDonorData(user?.userId );
   );
 
   return (
-    <div className="p-4 mt-20 md:mt-0 md:p-8 space-y-8 bg-gray-50 min-h-screen font-sans">
+    <div className="p-4 mt-20 md:mt-0 md:p-8 space-y-8 min-h-screen font-sans">
       {/* HEADER */}
       <div className="flex flex-col lg:flex-row gap-6 items-stretch">
         <div className="flex-1 bg-gradient-to-r from-red-500 to-red-600 p-8 rounded-3xl shadow-lg text-white relative overflow-hidden">

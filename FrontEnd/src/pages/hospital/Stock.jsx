@@ -18,13 +18,16 @@ export default function StockPage() {
   const [selectedType, setSelectedType] = useState("");
   const [units, setUnits] = useState("");
   const [mode, setMode] = useState("add");
- if (authLoading || loading) {
-   return (
-     <div className="flex items-center justify-center min-h-screen">
-       <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-red-600" />
-     </div>
-   );
- }
+
+    if (loading || authLoading)
+      return (
+        <div className="h-screen flex flex-col items-center justify-center gap-4">
+          <div className="w-12 h-12 border-4 border-red-500 border-t-transparent rounded-full animate-spin"></div>
+          <p className="text-gray-500 font-medium tracking-widest uppercase text-xs">
+            Loading....
+          </p>
+        </div>
+      );
 
   const handleSubmit = async (e) => {
     e.preventDefault();

@@ -91,9 +91,7 @@ const Information = () => {
               <div className="text-red-500 text-4xl mb-4">⏱️</div>
               <h3 className="font-bold text-xl mb-3">Frequency</h3>
               <p className="text-gray-600">
-                Every 3 months (Males)
-                <br />
-                Every 4 months (Females)
+                Every 3 months 
               </p>
             </div>
 

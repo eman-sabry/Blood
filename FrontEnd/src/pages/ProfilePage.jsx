@@ -98,12 +98,6 @@ const FIELDS_BY_ROLE = {
   admin: ADMIN_FIELDS,
 };
 
-const EDIT_PATH_BY_ROLE = {
-  donor: "/donor/profile/edit",
-  hospital: "/hospital/profile/edit",
-  admin: "/admin/profile/edit",
-};
-
 const AVATAR_COLORS = {
   donor: { bg: "bg-red-100", text: "text-red-600" },
   hospital: { bg: "bg-blue-100", text: "text-blue-600" },
@@ -117,19 +111,32 @@ export default function Profile() {
   const { data: user } = useAuthUser();
   const [imgError, setImgError] = useState(false);
 
-  if (!user) 
-    return(
-   <div className="flex items-center justify-center min-h-screen">
-      <div className="animate-spin h-10 w-10 border-b-2 border-red-600 rounded-full" />
-    </div>
-    )
-   
+  // دالة تنسيق التاريخ
+  const formatDate = (dateString) => {
+    if (!dateString) return "Not set";
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) return dateString; // لو الصيغة مش تاريخ رجع النص زي ما هو
+
+    return date.toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+    });
+  };
+
+  if (!user) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="animate-spin h-10 w-10 border-b-2 border-red-600 rounded-full" />
+      </div>
+    );
+  }
 
   const role = user.role ?? "donor";
   const fields = FIELDS_BY_ROLE[role] ?? DONOR_FIELDS;
   const avatarColor = AVATAR_COLORS[role] ?? AVATAR_COLORS.donor;
 
-  // group fields by section
+  // Group fields by section
   const sections = fields.reduce((acc, f) => {
     if (!acc[f.section]) acc[f.section] = [];
     acc[f.section].push(f);
@@ -142,21 +149,9 @@ export default function Profile() {
     .map((w) => w[0])
     .join("")
     .toUpperCase();
-console.log("User Data from API:", user);
+
   return (
     <div className="space-y-6 mt-20 md:mt-0">
-      {/* ── Header ── */}
-      {/* <div className="flex items-center justify-between flex-wrap gap-3">
-        <h2 className="text-2xl font-bold text-gray-900">My Profile</h2>
-        <Link
-          to={editPath}
-          className="flex items-center gap-2 text-sm px-4 py-2 rounded-xl bg-red-500 text-white hover:bg-red-600 transition"
-        >
-          <FaEdit className="text-xs" /> Edit profile
-        </Link>
-      </div>}
-     
-
       {/* ── Avatar card ── */}
       <div className="bg-white rounded-2xl border border-gray-100 p-6 flex items-center gap-5">
         {user.image && !imgError ? (
@@ -195,7 +190,13 @@ console.log("User Data from API:", user);
           </p>
           <dl className="divide-y divide-gray-50">
             {sFields.map(({ key, label, icon }) => {
-              const val = user[key];
+              let val = user[key];
+
+              // تنسيق التاريخ إذا كان الحقل هو تاريخ التبرع
+              if (key === "lastDonation" && val) {
+                val = formatDate(val);
+              }
+
               return (
                 <div key={key} className="flex items-center gap-4 py-3">
                   <span className="text-gray-300 text-base w-5 flex-shrink-0">

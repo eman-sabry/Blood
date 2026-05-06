@@ -84,16 +84,15 @@ const handleDelete = (id, name) => {
 };
 
   const currentData = activeTab === "donors" ? donors : hospitals;
-
-  if (isLoading)
-    return (
-      <div className="h-screen flex flex-col items-center justify-center gap-4">
-        <div className="w-12 h-12 border-4 border-red-500 border-t-transparent rounded-full animate-spin"></div>
-        <p className="text-gray-500 font-medium tracking-widest uppercase text-xs">
-          Loading BloodLife Engine...
-        </p>
-      </div>
-    );
+ if (isLoading)
+   return (
+     <div className="h-screen flex flex-col items-center justify-center gap-4">
+       <div className="w-12 h-12 border-4 border-red-500 border-t-transparent rounded-full animate-spin"></div>
+       <p className="text-gray-500 font-medium tracking-widest uppercase text-xs">
+         Loading....
+       </p>
+     </div>
+   );
 
   return (
     <div className="p-6 max-w-7xl mx-auto space-y-6 mt-20 md:mt-0 ">
