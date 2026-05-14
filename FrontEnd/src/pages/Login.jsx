@@ -88,7 +88,7 @@ const onSubmit = async (data) => {
 };
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-white to-red-50 px-4">
-      <div className="w-full max-w-md bg-white border border-gray-100 rounded-3xl shadow-sm p-10">
+      <div className="w-full max-w-xl bg-white border border-gray-100 rounded-3xl shadow-sm p-10">
         <div className="flex flex-col items-center mb-10 text-center">
           <h2 className="text-3xl font-bold text-gray-900">Welcome Back</h2>
 
@@ -122,7 +122,7 @@ const onSubmit = async (data) => {
 
           <div className="text-center pt-2">
             <p className="text-sm text-gray-500">
-              Don’t have an account?{" "}
+              Don’t have an account?
               <span
                 onClick={() => navigate("/signup")}
                 className="text-red-500 font-medium cursor-pointer hover:underline"
