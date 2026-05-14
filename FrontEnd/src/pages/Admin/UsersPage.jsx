@@ -74,9 +74,9 @@ const handleDelete = (id, name) => {
     if (result.isConfirmed) {
     
       if (activeTab === "donors") {
-        actions.deleteD(id);
+        actions.deleteDonor(id);
       } else {
-        actions.deleteH(id);
+        actions.deleteHospital(id);
       }
       toast.success(`Removed ${name} from system.`);
     }

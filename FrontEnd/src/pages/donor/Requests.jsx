@@ -81,10 +81,10 @@ export default function RequestsPage() {
         ) : (
           <div className="grid md:grid-cols-2 gap-4">
             {compatibleRequests.map((req) => {
-              // 1. ابحث عن بيانات المستشفى المرتبطة بهذا الطلب
+          
               const hospital = hospitals?.find((h) => h.id === req.hospitalId);
 
-              // 2. دمج البيانات لضمان وصول الاسم والعنوان للكارد
+             
               const enrichedRequest = {
                 ...req,
                 hospitalName:
@@ -98,7 +98,7 @@ export default function RequestsPage() {
               return (
                 <BloodRequestCard
                   key={req.id}
-                  request={enrichedRequest} // نرسل الطلب المعدل
+                  request={enrichedRequest} 
                   hasActiveTrip={onTheWayRequests?.length > 0}
                   canDonate={
                     !!(

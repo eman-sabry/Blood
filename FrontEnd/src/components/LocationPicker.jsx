@@ -114,6 +114,7 @@ const LocationPicker = ({
           onChange={(e) => typeof setValue === "function" && setValue("address", e.target.value)}
           placeholder="Address will appear here..."
           className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-sm focus:ring-2 focus:ring-red-100 focus:border-red-300 outline-none transition-all"
+          readOnly
         />
         {isLoading && (
           <div className="absolute right-4 top-1/2 -translate-y-1/2">

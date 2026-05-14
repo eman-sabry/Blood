@@ -13,7 +13,7 @@ import { useDonorData } from "../../Hooks/useDonorData";
 import { useAuthUser } from "../../Hooks/useAuthUser";
 
 export default function DonorLayout() {
-  const [isOpen, setIsOpen] = useState(false); // حالة القائمة للموبايل
+  const [isOpen, setIsOpen] = useState(false);
   const { data: user } = useAuthUser();
   const { notifications } = useDonorData(user?.uid || user?.firebase_uid);
 
@@ -102,7 +102,6 @@ export default function DonorLayout() {
         </nav>
       </aside>
 
-      {/* Overlay (الخلفية المظلمة عند فتح القائمة في الموبايل) */}
       {isOpen && (
         <div
           className="fixed inset-0 bg-black/20 z-30 md:hidden"

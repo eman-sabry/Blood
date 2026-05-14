@@ -68,7 +68,9 @@ export default function AdminDashboard() {
     }).then((result) => {
       if (result.isConfirmed) {
         if (isDelete) {
-          type === "hospital" ? actions.deleteH(id) : actions.deleteD(id);
+          type === "hospital"
+            ? actions.deleteHospital(id)
+            : actions.deleteDonor(id);
         } else {
           actions.approve(id);
         }
