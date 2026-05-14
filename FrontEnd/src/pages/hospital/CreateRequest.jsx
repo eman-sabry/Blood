@@ -41,7 +41,6 @@ export default function CreateRequest() {
 
     try {
       await createBloodRequest(form, user);
-      toast.success("Request created successfully");
       setForm({ bloodTypeNeeded: "", quantity: "" });
     } catch  {
       toast.error("Something went wrong");
@@ -70,7 +69,6 @@ export default function CreateRequest() {
 
     try {
       await deleteRequest(id, hospitalId);
-      toast.success("Deleted successfully");
     } catch (error) {
       console.error(error);
       toast.error("Delete failed");

@@ -34,8 +34,6 @@ export default function StockPage() {
 
     try {
       await updateStock(hospitalId, selectedType, Number(units), mode);
-
-      toast.success("Stock updated successfully ");
       setSelectedType("");
       setUnits("");
     } catch (err) {

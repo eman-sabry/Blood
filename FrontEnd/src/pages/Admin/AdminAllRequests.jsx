@@ -38,8 +38,8 @@ export default function AdminAllRequests() {
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold flex items-center gap-2 mb-6">
-             Blood Requests
+          <h1 className="text-4xl font-black text-slate-900 tracking-tight">
+            Blood Requests
           </h1>
 
           <div className="flex flex-col md:flex-row gap-4 p-4 bg-white rounded-3xl shadow-sm border border-gray-100">

@@ -4,13 +4,11 @@ export default function ActiveRequestsTab({
   activeRequests = [],
   searchQuery = "",
 }) {
-  // 1. تنظيف النص والتأكد من وجود بيانات
+  
   const filtered = activeRequests.filter((r) => {
     if (!searchQuery.trim()) return true;
 
     const query = searchQuery.trim().toLowerCase();
-
-    // 2. البحث مع التأكد من وجود القيم (Safe Navigation)
     const matchesBlood = r.bloodTypeNeeded?.toLowerCase().includes(query);
     const matchesHospital = r.hospitalName?.toLowerCase().includes(query);
 

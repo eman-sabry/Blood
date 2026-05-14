@@ -19,8 +19,8 @@ export default function AdminDonationHistory() {
     <div className="p-6 min-h-screen mt-20 md:mt-0 ">
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-4xl font-bold flex items-center gap-2">
-           Donation History
+          <h1 className="text-4xl font-black text-slate-900 tracking-tight">
+            Donation History
           </h1>
           <div className="relative w-64">
             <FaSearch className="absolute left-3 top-3 text-gray-400" />

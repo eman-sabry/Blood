@@ -22,12 +22,12 @@ const canDonateTo = (donorBlood, requestBlood) => {
 
 const isNearby = (donor, hospital, maxDistanceKm = 0.5) => {
     if (!donor ?.lat || !donor ?.lng || !hospital ?.lat || !hospital ?.lng) {
-        return true; // لو الإحداثيات ناقصة اعتبره قريب
+        return true; 
     }
 
     const toRad = (deg) => deg * (Math.PI / 180);
 
-    const R = 6371; // نصف قطر الأرض بالكيلومترات
+    const R = 6371; 
     const dLat = toRad(hospital.lat - donor.lat);
     const dLng = toRad(hospital.lng - donor.lng);
     const lat1 = toRad(donor.lat);

@@ -24,7 +24,11 @@ export default function DonationHistoryTable({ donationHistory }) {
                     </td>
 
                     <td className="py-4 text-gray-500">
-                      {new Date(h.date).toLocaleDateString("en-US")}
+                      {new Date(h.updatedAt).toLocaleDateString("en-GB", {
+                        day: "2-digit",
+                        month: "short",
+                        year: "numeric",
+                      })}
                     </td>
 
                     <td className="py-4">
