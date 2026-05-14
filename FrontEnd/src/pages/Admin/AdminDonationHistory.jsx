@@ -1,11 +1,43 @@
 import React from "react";
 import { useAdminData } from "../../Hooks/useAdminData";
-import { FaHistory, FaSearch, FaHospital, FaUserAlt } from "react-icons/fa";
+import {
+  FaHistory,
+  FaSearch,
+  FaHospital,
+  FaUserAlt,
+  FaCheckCircle,
+  FaClock,
+  FaTimesCircle,
+} from "react-icons/fa";
 
 export default function AdminDonationHistory() {
   const {  history, search, isLoading } =
     useAdminData();
+   const getStatusStyle = (status) => {
+     switch (status) {
+       case "Completed":
+         return "bg-green-100 text-green-700 border-green-200";
+       case "OnTheWay":
+         return "bg-orange-100 text-orange-700 border-orange-200";
+       case "Cancelled":
+         return "bg-red-100 text-red-700 border-red-200";
+       default:
+         return "bg-gray-100 text-gray-700 border-gray-200";
+     }
+   };
  
+   const getStatusIcon = (status) => {
+     switch (status) {
+       case "Completed":
+         return <FaCheckCircle className="text-xs" />;
+       case "OnTheWay":
+         return <FaClock className="text-xs" />;
+       case "Cancelled":
+         return <FaTimesCircle className="text-xs" />;
+       default:
+         return null;
+     }
+   };
     if (isLoading)
     return (
       <div className="h-screen flex flex-col items-center justify-center gap-4">
@@ -77,12 +109,9 @@ export default function AdminDonationHistory() {
                   </td>
                   <td className="px-6 py-4">
                     <span
-                      className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase ${
-                        item.status === "Completed"
-                          ? "bg-green-100 text-green-700"
-                          : "bg-amber-100 text-amber-700"
-                      }`}
+                      className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold border ${getStatusStyle(item.status)}`}
                     >
+                      {getStatusIcon(item.status)}
                       {item.status}
                     </span>
                   </td>

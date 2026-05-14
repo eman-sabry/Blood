@@ -29,7 +29,7 @@ const verifyToken = async (req, res, next) => {
         }
 
         req.user = {
-            id: user.id, // 👈 أهم حاجة
+            id: user.id, 
             role: user.role
         };
 

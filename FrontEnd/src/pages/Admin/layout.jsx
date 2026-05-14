@@ -11,7 +11,7 @@ import {
 } from "react-icons/fa";
 
 export default function AdminLayout() {
-  const [isOpen, setIsOpen] = useState(false); // حالة القائمة في الموبايل
+  const [isOpen, setIsOpen] = useState(false); 
 
   const toggleSidebar = () => setIsOpen(!isOpen);
 
@@ -24,9 +24,9 @@ export default function AdminLayout() {
 
   return (
     <div className="flex flex-col md:flex-row min-h-screen mt-16 md:mt-20 bg-gray-50">
-      {/* Mobile Header - يظهر فقط في الشاشات الصغيرة */}
+    
       <div className="md:hidden flex items-center justify-between bg-white p-4 border-b border-gray-200 fixed top-16 left-0 w-full z-50 h-16">
-        <h1 className="text-red-500 font-bold text-xl">Admin Panel</h1>
+        <h1 className="text-red-600 font-extrabold text-xl">Admin Panel</h1>
         <button
           onClick={toggleSidebar}
           className="text-black text-xl focus:outline-none"
@@ -44,7 +44,7 @@ export default function AdminLayout() {
           pt-36 md:pt-5
         `}
       >
-        <h1 className="hidden md:block text-red-500 font-bold text-2xl mb-8">
+        <h1 className="hidden md:block text-red-600 font-extrabold text-2xl mb-8">
           Admin Panel
         </h1>
 
@@ -91,7 +91,6 @@ export default function AdminLayout() {
         </nav>
       </aside>
 
-      {/* Overlay للموبايل (يغلق القائمة عند الضغط خارجها) */}
       {isOpen && (
         <div
           className="fixed inset-0 bg-black/20 z-30 md:hidden"

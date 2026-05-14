@@ -28,7 +28,7 @@ export default function CreateRequest() {
 
   const [loading, setLoading] = useState(false);
 
-  // ❗ Prevent actions if no hospitalId
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 

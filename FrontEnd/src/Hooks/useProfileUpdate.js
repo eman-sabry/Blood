@@ -69,7 +69,6 @@ export function useProfileUpdate() {
         },
     });
 
-    // 🔥 FIX 1: حماية من null
     const userId = user ?.userId;
     const profileId = user ?.profileId;
     const role = user ?.role || "donor";

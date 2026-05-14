@@ -32,7 +32,7 @@ const HeroTitle = () => (
 const HeroCTA = () => (
   <div className="flex items-center gap-4 mb-9">
     <Link to="/signup">
-      <button className="bg-white text-red-800 font-medium text-lg px-6 py-3 rounded-xl hover:-translate-y-0.5 hover:shadow-lg transition-all duration-150">
+      <button className="bg-white text-red-800 font-bold text-lg px-6 py-3 rounded-xl hover:-translate-y-0.5 hover:shadow-lg transition-all duration-150">
         Register Now
       </button>
     </Link>

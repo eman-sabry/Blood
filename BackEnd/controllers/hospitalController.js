@@ -25,7 +25,7 @@ exports.approveHospital = async (req, res) => {
         } = req.params;
         const {
             status
-        } = req.body; // ستكون قيمتها "approved"
+        } = req.body; 
 
         const hospital = await Hospital.findByPk(id);
 
@@ -35,7 +35,7 @@ exports.approveHospital = async (req, res) => {
             });
         }
 
-        // تحديث الحالة
+   
         hospital.status = status;
         await hospital.save();
 

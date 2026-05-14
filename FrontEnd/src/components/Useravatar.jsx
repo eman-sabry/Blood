@@ -15,7 +15,6 @@ function getInitials(name = "") {
 
 export function UserAvatar({ image, name, role }) {
   const { avatar } = ROLE_STYLE[role] ?? ROLE_STYLE.donor;
-
   if (image) {
     return (
       <img

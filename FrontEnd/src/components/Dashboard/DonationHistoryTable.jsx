@@ -14,13 +14,13 @@ export default function DonationHistoryTable({ history, searchQuery }) {
   const statusStyles = {
     Completed: "text-green-600 font-medium",
     Cancelled: "text-red-500 font-medium",
-    Pending: "text-yellow-500 font-medium",
+    OnTheWay: "text-orange-500 font-medium",
   };
 
   const statusLabels = {
     Completed: "Completed",
-    Cancelled: "Health condition not suitable",
-    Pending: "Pending",
+    Cancelled: "Cancelled ,Health condition not suitable",
+    OnTheWay: "OnTheWay",
   };
 
   return (

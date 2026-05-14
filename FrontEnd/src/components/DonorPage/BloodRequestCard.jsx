@@ -7,12 +7,12 @@ import {
 
 export default function BloodRequestCard({
   request,
-  canDonate, // صلاحية الـ 90 يوم
-  onDonate, // دالة acceptRequest
-  isAccepting, // حالة الـ Loading
-  hasActiveTrip, // هل لديه مشوار حالي؟
+  canDonate, 
+  onDonate, 
+  isAccepting, 
+  hasActiveTrip, 
 }) {
-  // تحديد نص الزرار بناءً على الحالة
+
   const canDonateBool = !!canDonate;
   const hasActiveTripBool = !!hasActiveTrip;
   const isAcceptingBool = !!isAccepting;
@@ -39,7 +39,7 @@ export default function BloodRequestCard({
 
         <div className="flex flex-col items-end gap-1">
           <span
-            className={`text-[10px] font-bold uppercase px-2 py-1 rounded-md ${
+            className={`text-[10px] font-bold uppercase px-2 py-1 rounded-xl ${
               request.status === "Urgent"
                 ? "bg-red-600 text-white"
                 : "bg-amber-100 text-amber-700"
@@ -91,7 +91,6 @@ export default function BloodRequestCard({
             <FaLock className="text-[10px]" /> {getDisabledMessage()}
           </button>
 
-          {/* رسالة توضيحية تظهر عند الوقوف بالماوس على الزرار المعطل */}
           {hasActiveTrip && (
             <p className="text-[9px] text-amber-600 text-center mt-1 flex items-center justify-center gap-1">
               <FaExclamationTriangle /> Finish your current trip first

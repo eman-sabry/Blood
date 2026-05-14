@@ -68,7 +68,7 @@ const DonationManagement = () => {
       text: `Are you sure you want to cancel ${donorEntry.donorName}'s trip?`,
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#ef4444", // Red
+      confirmButtonColor: "#ef4444", 
       cancelButtonColor: "#6b7280",
       confirmButtonText: "Yes, Cancel it",
       customClass: { popup: "rounded-[2rem]" },

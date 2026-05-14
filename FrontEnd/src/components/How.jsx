@@ -37,7 +37,7 @@ const data = [
 const How = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-white to-red-50 px-6 py-20">
-      {/* Concise & Impactful Title */}
+   
       <h1 className="text-4xl md:text-6xl font-black text-center text-gray-900 tracking-tight">
         Simple Steps, <span className="text-red-600">Big Impact.</span>
       </h1>
@@ -53,26 +53,24 @@ const How = () => {
             key={item.step}
             className="group flex flex-col items-center text-center bg-white rounded-3xl shadow-sm border border-gray-100 p-8 hover:shadow-xl transition-all duration-300"
           >
-            {/* Step Indicator */}
-            <span className="text-xs font-bold text-red-500 bg-red-50 px-3 py-1 rounded-full mb-6">
+           
+            <span className="text-xs font-bold text-red-600 bg-red-50 px-3 py-1 rounded-full mb-6">
               {item.step}
             </span>
 
-            {/* Icon Circle */}
+           
             <div
               className={`w-16 h-16 flex items-center justify-center rounded-2xl mb-6 text-3xl ${item.iconBg} ${item.iconColor} group-hover:scale-110 transition-transform`}
             >
               {item.icon}
             </div>
 
-            {/* Content */}
+        
             <h2 className="text-xl font-bold text-gray-900">{item.title}</h2>
 
             <p className="text-gray-500 mt-3 text-sm leading-relaxed">
               {item.description}
             </p>
-
-            {/* Mini-Highlight Tag */}
             <div className="mt-6 py-2 px-4 bg-gray-50 text-gray-700 text-xs font-semibold rounded-lg border border-gray-100 group-hover:bg-gray-100 transition-colors">
               {item.highlight}
             </div>

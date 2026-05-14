@@ -1,4 +1,4 @@
-import { useState } from "react"; // إضافة useState
+import { useState } from "react"; 
 import { NavLink, Outlet } from "react-router-dom";
 import {
   FaHome,
@@ -8,14 +8,14 @@ import {
   FaHistory,
   FaRegBell,
   FaFileMedical,
-  FaBars, // أيقونة القائمة
+  FaBars, 
   FaTimes, 
 } from "react-icons/fa";
 import { useHospitalData } from "../../Hooks/useHospitalData";
 import { useAuthUser } from "../../Hooks/useAuthUser";
 
 export default function HospitalLayout() {
-  const [isOpen, setIsOpen] = useState(false); // حالة القائمة في الموبايل
+  const [isOpen, setIsOpen] = useState(false); 
   const { data: user } = useAuthUser();
   const { notifications } = useHospitalData(user?.userId);
 
@@ -34,7 +34,7 @@ export default function HospitalLayout() {
   return (
     <div className="flex  flex-col md:flex-row min-h-screen mt-16 md:mt-20 bg-gray-50">
       <div className="md:hidden flex items-center justify-between bg-white p-4 border-b border-gray-200 fixed top-16 left-0 w-full z-50 h-16">
-        <h1 className="text-red-500 font-bold text-xl">Hospital Panel</h1>
+        <h1 className="text-red-600 font-extrabold text-xl">Hospital Panel</h1>
         <button
           onClick={toggleSidebar}
           className="text-black text-xl focus:outline-none"
@@ -52,12 +52,12 @@ export default function HospitalLayout() {
         pt-36 md:pt-5
       `}
       >
-        <h1 className="hidden md:block text-red-500 font-bold text-2xl mb-8">
+        <h1 className="hidden md:block text-red-600 font-extrabold text-2xl mb-8">
           Hospital Panel
         </h1>
 
         <nav className="flex flex-col gap-2">
-          {/* أضفت onClick={toggleSidebar} لكل رابط لإغلاق القائمة بعد الضغط في الموبايل */}
+        
           <NavLink
             to="/hospital/dashboard"
             className={linkClass}
@@ -121,8 +121,6 @@ export default function HospitalLayout() {
           </NavLink>
         </nav>
       </aside>
-
-      {/* Overlay للموبايل (يغلق القائمة عند الضغط خارجها) */}
       {isOpen && (
         <div
           className="fixed inset-0 bg-black/20 z-30 md:hidden"

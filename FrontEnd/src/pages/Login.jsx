@@ -115,7 +115,7 @@ const onSubmit = async (data) => {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-red-500 hover:bg-red-600 disabled:opacity-60 text-white py-3.5 rounded-xl font-semibold text-sm transition"
+            className="w-full bg-red-600 hover:bg-red-700 disabled:opacity-60 text-white py-3.5 rounded-xl font-semibold text-sm transition"
           >
             {isSubmitting ? "Logging in..." : "Login"}
           </button>
@@ -125,7 +125,7 @@ const onSubmit = async (data) => {
               Don’t have an account?
               <span
                 onClick={() => navigate("/signup")}
-                className="text-red-500 font-medium cursor-pointer hover:underline"
+                className="text-red-600 font-medium cursor-pointer hover:underline"
               >
                 Sign up
               </span>

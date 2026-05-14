@@ -25,7 +25,8 @@ export default function OnTheWayTimeline({
         {requests.map((record) => {
          
           const hospitalName = record.hospitalName || "Hospital";
-          const hospitalAddress = record.hospitalAddress || "";
+       
+          const hospitalAddress = record.hospitalAddress || "Near You";
 
           
           const acceptedAt = record.date
@@ -37,10 +38,9 @@ export default function OnTheWayTimeline({
 
           return (
             <div
-              key={record.id} 
+              key={record.id}
               className="border border-orange-100 rounded-2xl p-4 bg-orange-50/40"
             >
-              {/* Header */}
               <div className="flex justify-between items-start mb-4">
                 <div>
                   <p className="font-bold text-gray-800">{hospitalName}</p>
@@ -55,9 +55,7 @@ export default function OnTheWayTimeline({
                 </span>
               </div>
 
-              {/* Timeline Steps */}
               <div className="flex items-center gap-2 mb-4">
-                {/* Step 1: Accepted */}
                 <div className="flex flex-col items-center">
                   <div className="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center text-white text-xs">
                     <FaCheckCircle />
@@ -74,7 +72,6 @@ export default function OnTheWayTimeline({
                   <div className="absolute inset-0 bg-orange-400 animate-pulse" />
                 </div>
 
-                {/* Step 2: On The Way */}
                 <div className="flex flex-col items-center">
                   <div className="w-8 h-8 rounded-full bg-orange-400 flex items-center justify-center text-white text-xs animate-bounce">
                     <FaCar />
@@ -86,7 +83,6 @@ export default function OnTheWayTimeline({
 
                 <div className="flex-1 h-0.5 bg-gray-200" />
 
-                {/* Step 3: Hospital Arrival */}
                 <div className="flex flex-col items-center">
                   <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-gray-400 text-xs">
                     <FaHospital />
@@ -98,7 +94,6 @@ export default function OnTheWayTimeline({
 
                 <div className="flex-1 h-0.5 bg-gray-200" />
 
-                {/* Step 4: Success */}
                 <div className="flex flex-col items-center">
                   <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-gray-400 text-xs">
                     <FaHeart />
@@ -109,7 +104,6 @@ export default function OnTheWayTimeline({
                 </div>
               </div>
 
-              {/* Actions */}
               <div className="flex gap-2">
                 <div className="flex-1 bg-white border border-green-200 rounded-xl py-2 px-4 flex items-center justify-center gap-2">
                   <span className="relative flex h-2 w-2">
@@ -122,7 +116,7 @@ export default function OnTheWayTimeline({
                 </div>
 
                 <button
-                  onClick={() => onCancel(record.requestId)} 
+                  onClick={() => onCancel(record.requestId)}
                   disabled={isCancelling}
                   className="px-4 py-2 bg-gray-100 hover:bg-red-50 text-gray-500 hover:text-red-500 text-xs font-bold rounded-xl transition-colors disabled:opacity-50 flex items-center gap-1"
                 >

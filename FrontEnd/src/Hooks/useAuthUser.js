@@ -36,18 +36,18 @@ export function useAuthUser() {
           },
         });
 
-        // استخراج البيانات كما في الـ Log
+ 
         const userBase = data ?.user || data;
         const userProfile = userBase ?.profile || {};
 
         setState({
           user: {
             ...userBase,
-            ...userProfile, // لجعل address و licenseNumber في المستوى الأول
+            ...userProfile, 
             uid: firebaseUser.uid,
             email: firebaseUser.email,
-            userId: userBase.id, // قيمته 2
-              profileId: userProfile.id, // قيمته 1
+            userId: userBase.id,
+              profileId: userProfile.id,
             role: userBase ?.role,
           },
           loading: false,

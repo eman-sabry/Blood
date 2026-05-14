@@ -38,7 +38,7 @@ export default function RoleSelect() {
   return (
     <div className="flex flex-col justify-center items-center min-h-screen bg-gradient-to-b from-white to-red-50 gap-4 px-8 md:px-12 py-12">
       <h1 className="text-4xl md:text-6xl font-black text-center text-gray-900 tracking-tight">
-        Join <span className="text-red-500">LifeDrop</span> Today
+        Join <span className="text-red-600">LifeDrop</span> Today
       </h1>
 
       <p className="text-gray-500 text-base sm:text-lg md:text-xl mt-4 text-center max-w-2xl px-2">
@@ -50,7 +50,6 @@ export default function RoleSelect() {
         I want to join as a...
       </h1>
 
-      {/* Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10-8">
         {data.map((card, index) => (
           <HowCard key={index} {...card} />

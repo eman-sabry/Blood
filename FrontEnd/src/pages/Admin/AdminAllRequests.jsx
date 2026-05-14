@@ -111,17 +111,18 @@ export default function AdminAllRequests() {
                     <p className="text-[10px] text-gray-400 uppercase font-bold">
                       Status
                     </p>
-                    <p
-                      className={`text-[10px] font-black uppercase tracking-tighter mt-1 ${
-                        req.status === "Completed"
-                          ? "text-green-600"
-                          : req.status === "Pending"
-                            ? "text-orange-500"
-                            : "text-red-600"
-                      }`}
+                    <span
+                      className={`px-3 py-1 text-xs font-bold rounded-full
+                  ${
+                    req.status === "Completed"
+                      ? "bg-green-100 text-green-700"
+                      : req.status === "Pending"
+                        ? "bg-yellow-100 text-yellow-700"
+                        : "bg-red-100 text-red-700"
+                  }`}
                     >
                       {req.status}
-                    </p>
+                    </span>
                   </div>
                 </div>
 

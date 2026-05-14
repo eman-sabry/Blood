@@ -4,8 +4,6 @@ import { FaBell, FaCheck, FaCheckDouble, FaTrashAlt } from "react-icons/fa";
 
 export default function NotificationsPage() {
   const { data: user } = useAuthUser();
-
-  // نستخدم المعرف الموحد للمستخدم (سواء كان مستشفى أو متبرع)
   const currentUserId = user?.userId || user?.id;
 
   const { notifications = [], actions, loading } = useDonorData(currentUserId);
@@ -18,7 +16,7 @@ export default function NotificationsPage() {
     );
   }
 
-  // فلترة وترتيب الإشعارات
+
   const unread = notifications.filter((n) => n.status === "Unread");
   const read = notifications.filter((n) => n.status === "Read");
   const allNotifications = [...unread, ...read];

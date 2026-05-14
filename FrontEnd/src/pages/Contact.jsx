@@ -6,6 +6,7 @@ import {
   FaClock,
   FaHeart,
 } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -21,8 +22,8 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.");
-    // هنا تقدري تضيفي API call
+ toast.success("Message sent successfully")
+
   };
 
   return (

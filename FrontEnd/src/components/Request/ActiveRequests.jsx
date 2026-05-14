@@ -44,11 +44,10 @@ export default function ActiveRequests({ activeRequests, handleDelete }) {
 
                 {req.status === "Pending" && (
                    <button
-                                          onClick={() => handleDelete(req.id)}
-                                          className="p-3 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-xl transition-colors"
-                                        >
-                                          <FaTrash size={14} />
-                                        </button>
+                     onClick={() => handleDelete(req.id)}
+                      className="p-3 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-xl transition-colors"                                        >
+                      <FaTrash size={14} />
+                      </button>
                   
                 )}
               </div>

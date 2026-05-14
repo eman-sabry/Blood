@@ -1,6 +1,17 @@
 import React from "react";
 
 export default function DonationHistoryTable({ donationHistory }) {
+  const statusStyles = {
+    Completed: "text-green-600 font-medium",
+    Cancelled: "text-red-500 font-medium",
+    OnTheWay: "text-orange-500 font-medium",
+  };
+
+  const statusLabels = {
+    Completed: "Completed",
+    Cancelled: "Cancelled, Health condition not suitable",
+    OnTheWay: "OnTheWay",
+  };
   return (
     <div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-50">
       <h3 className="font-bold text-lg mb-6 text-gray-800">Donation History</h3>
@@ -30,12 +41,12 @@ export default function DonationHistoryTable({ donationHistory }) {
                         year: "numeric",
                       })}
                     </td>
-
-                    <td className="py-4">
-                      <span className="text-green-600 bg-green-50 px-3 py-1 rounded-full text-[10px] font-bold uppercase">
-                        Completed
-                      </span>
+                    <td
+                      className={`py-4 ${statusStyles[h.status] || "text-gray-500"}`}
+                    >
+                      {statusLabels[h.status] || h.status}
                     </td>
+                    
                   </tr>
                 ))}
               </tbody>

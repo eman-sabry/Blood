@@ -86,7 +86,7 @@ const { notifications } = useHospitalData(user?.userId);
 
         <Link
           to="/hospital/create-request"
-          className="bg-red-500 text-white px-4 py-2 rounded-xl flex items-center gap-2"
+          className="bg-red-600 hover:bg-red-700 text-white  font-bold px-4 py-2 rounded-xl flex items-center gap-2"
         >
           <FaPlus /> New Request
         </Link>
@@ -113,7 +113,7 @@ const { notifications } = useHospitalData(user?.userId);
               onClick={() => setActiveTab("requests")}
               className={`px-4 py-2 rounded-xl text-sm ${
                 activeTab === "requests"
-                  ? "bg-blue-600 text-white"
+                  ? "bg-red-600 text-white"
                   : "bg-gray-100"
               }`}
             >
@@ -124,7 +124,7 @@ const { notifications } = useHospitalData(user?.userId);
               onClick={() => setActiveTab("history")}
               className={`px-4 py-2 rounded-xl text-sm ${
                 activeTab === "history"
-                  ? "bg-green-600 text-white"
+                  ? "bg-red-600 text-white"
                   : "bg-gray-100"
               }`}
             >

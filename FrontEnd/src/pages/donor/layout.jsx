@@ -15,7 +15,8 @@ import { useAuthUser } from "../../Hooks/useAuthUser";
 export default function DonorLayout() {
   const [isOpen, setIsOpen] = useState(false);
   const { data: user } = useAuthUser();
-  const { notifications } = useDonorData(user?.uid || user?.firebase_uid);
+
+  const { notifications } = useDonorData(user?.userId);
 
   const unreadCount =
     notifications?.filter((n) => n.status === "Unread")?.length || 0;
@@ -32,7 +33,7 @@ export default function DonorLayout() {
   return (
     <div className="flex  flex-col md:flex-row min-h-screen mt-16 md:mt-20  bg-gray-50">
       <div className="md:hidden  flex  items-center justify-between bg-white p-4 border-b border-gray-200 fixed top-16 left-0 w-full z-50 h-16">
-        <h1 className="text-red-500 font-bold text-xl"> Donor Panel</h1>
+        <h1 className="text-red-600 font-extrabold text-xl"> Donor Panel</h1>
         <button
           onClick={toggleSidebar}
           className="text-black text-xl focus:outline-none"
@@ -50,7 +51,7 @@ export default function DonorLayout() {
         pt-36 md:pt-5
       `}
       >
-        <h1 className="hidden md:block text-red-500 font-bold text-2xl mb-8">
+        <h1 className="hidden md:block text-red-600 font-extrabold text-2xl mb-8">
           Donor Panel
         </h1>
 
@@ -68,6 +69,7 @@ export default function DonorLayout() {
             className={linkClass}
             onClick={() => setIsOpen(false)}
           >
+           
             <div className="relative flex items-center gap-3">
               <FaRegBell className="text-lg" />
               {unreadCount > 0 && (

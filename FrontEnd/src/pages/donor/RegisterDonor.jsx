@@ -162,13 +162,13 @@ export default function RegisterDonor() {
           <button
             type="submit"
             disabled={isSubmitting || loading}
-            className="w-full bg-red-500 hover:bg-red-600 disabled:opacity-60 text-white py-3 rounded-xl"
+            className="w-full bg-red-600 hover:bg-red-700 disabled:opacity-60 text-white py-3 rounded-xl"
           >
             {isSubmitting || loading ? "Creating..." : "Create Account"}
           </button>
           <p className="text-center text-sm text-gray-500">
             Already have an account?{" "}
-            <Link to="/login" className="text-red-500 font-medium">
+            <Link to="/login" className="text-red-600 font-medium">
               Login
             </Link>
           </p>

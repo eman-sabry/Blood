@@ -21,7 +21,6 @@ exports.getAllUsers = async (req, res) => {
 };
 
 
-// إضافة يوزر جديد بواسطة الأدمن
 exports.createUserByAdmin = async (req, res) => {
     try {
         const newUser = await User.create(req.body);

@@ -91,14 +91,14 @@ export default function RegisterHospital() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full mt-2 bg-red-500 hover:bg-red-600 disabled:opacity-60 text-white py-3 rounded-xl font-semibold text-sm transition-all"
+            className="w-full mt-2 bg-red-600 hover:bg-red-700 disabled:opacity-60 text-white py-3 rounded-xl font-semibold text-sm transition-all"
           >
             {isSubmitting ? "Submitting..." : "Request Hospital Access"}
           </button>
 
           <p className="text-center text-sm text-gray-500">
-            Already have an account?{" "}
-            <Link to="/login" className="text-red-500 font-medium">
+            Already have an account?
+            <Link to="/login" className="text-red-600 font-medium">
               Login
             </Link>
           </p>

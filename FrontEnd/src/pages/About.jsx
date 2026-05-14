@@ -23,7 +23,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* باقي الصفحة (نفس السابق) */}
+
       <section className="py-24 bg-white">
         <div className="max-w-5xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-16 items-center">

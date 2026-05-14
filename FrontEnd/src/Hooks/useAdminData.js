@@ -15,8 +15,6 @@ import {
 export function useAdminData() {
     const queryClient = useQueryClient();
     const [searchTerm, setSearchTerm] = useState("");
-
-    // 1. جلب البيانات الأساسية من السيرفر
     const usersQuery = useQuery({
         queryKey: ["admin", "users"],
         queryFn: async () => (await api.get("/users")).data,
@@ -46,11 +44,9 @@ export function useAdminData() {
         queryFn: async () => (await api.get("/history")).data,
         initialData: []
     });
-
-    // دالة مساعدة لجلب بيانات المستخدم (الإسم والحالة) من جدول الـ Users
     const getUserById = (userId) => usersQuery.data.find(u => String(u.id) === String(userId)) || {};
 
-    // --- 2. معالجة بيانات المستشفيات (Enriching Hospitals) ---
+   
     const enrichedHospitals = useMemo(() => {
         return hospitalsQuery.data.map(h => {
             const user = getUserById(h.userId);
@@ -64,7 +60,7 @@ export function useAdminData() {
         }).filter(h => h.displayName.toLowerCase().includes(searchTerm.toLowerCase()));
     }, [hospitalsQuery.data, usersQuery.data, searchTerm]);
 
-    // --- 3. معالجة بيانات المتبرعين (Enriching Donors) ---
+
     const enrichedDonors = useMemo(() => {
         return donorsQuery.data.map(d => {
             const user = getUserById(d.userId);
@@ -79,7 +75,6 @@ export function useAdminData() {
         }).filter(d => d.displayName.toLowerCase().includes(searchTerm.toLowerCase()));
     }, [donorsQuery.data, usersQuery.data, searchTerm]);
 
-    // --- 4. معالجة سجل التبرعات (Enriching History) ---
     const enrichedHistory = useMemo(() => {
         return historyQuery.data.map(item => {
             const hospital = hospitalsQuery.data.find(h => String(h.id) === String(item.hospitalId));
@@ -100,7 +95,7 @@ export function useAdminData() {
         );
     }, [historyQuery.data, hospitalsQuery.data, donorsQuery.data, usersQuery.data, searchTerm]);
 
-    // --- 5. معالجة طلبات الدم (Enriching Requests) ---
+   
     const enrichedRequests = useMemo(() => {
         return requestsQuery.data.map(req => {
             const hospital = hospitalsQuery.data.find(h => String(h.id) === String(req.hospitalId));
@@ -114,7 +109,6 @@ export function useAdminData() {
         }).filter(req => req.hospitalName.toLowerCase().includes(searchTerm.toLowerCase()));
     }, [requestsQuery.data, hospitalsQuery.data, usersQuery.data, searchTerm]);
 
-    // --- 6. العمليات (Mutations) ---
     const approveMutation = useMutation({
         mutationFn: async (hospitalId) => {
             const hospital = hospitalsQuery.data.find(h => h.id === hospitalId);

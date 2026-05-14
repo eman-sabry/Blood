@@ -18,7 +18,6 @@ import {
   FaShieldAlt,
 } from "react-icons/fa";
 
-// ── Field definitions per role ────────────────────────────────────────────────
 const DONOR_FIELDS = [
   { key: "name", label: "Full name", icon: <FaUser />, section: "Personal" },
   { key: "email", label: "Email", icon: <FaEnvelope />, section: "Personal" },
@@ -106,16 +105,14 @@ const AVATAR_COLORS = {
 
 const ROLE_LABEL = { donor: "Donor", hospital: "Hospital", admin: "Admin" };
 
-// ── Component ─────────────────────────────────────────────────────────────────
 export default function Profile() {
   const { data: user } = useAuthUser();
   const [imgError, setImgError] = useState(false);
 
-  // دالة تنسيق التاريخ
   const formatDate = (dateString) => {
     if (!dateString) return "Not set";
     const date = new Date(dateString);
-    if (isNaN(date.getTime())) return dateString; // لو الصيغة مش تاريخ رجع النص زي ما هو
+    if (isNaN(date.getTime())) return dateString; 
 
     return date.toLocaleDateString("en-GB", {
       day: "2-digit",
@@ -152,7 +149,6 @@ export default function Profile() {
 
   return (
     <div className="space-y-6 mt-20 md:mt-0">
-      {/* ── Avatar card ── */}
       <div className="bg-white rounded-2xl border border-gray-100 p-6 flex items-center gap-5">
         {user.image && !imgError ? (
           <img
@@ -179,7 +175,6 @@ export default function Profile() {
         </div>
       </div>
 
-      {/* ── Field sections ── */}
       {Object.entries(sections).map(([section, sFields]) => (
         <div
           key={section}
@@ -191,8 +186,6 @@ export default function Profile() {
           <dl className="divide-y divide-gray-50">
             {sFields.map(({ key, label, icon }) => {
               let val = user[key];
-
-              // تنسيق التاريخ إذا كان الحقل هو تاريخ التبرع
               if (key === "lastDonation" && val) {
                 val = formatDate(val);
               }
