@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="../Blood Donation/FrontEnd/public/logo.png" width="170" alt="LifeDrop Logo"/>
+  <img src="./FrontEnd/public/logo.png" width="170" alt="LifeDrop Logo"/>
 </p>
 <p align="center">
 A full-stack blood donation platform connecting donors with hospitals in real time to save lives faster and more efficiently.
