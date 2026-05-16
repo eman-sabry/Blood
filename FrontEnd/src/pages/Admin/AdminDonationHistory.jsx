@@ -4,7 +4,7 @@ import {
   FaHistory,
   FaSearch,
   FaHospital,
-  FaUserAlt,
+  FaUser,
   FaCheckCircle,
   FaClock,
   FaTimesCircle,
@@ -81,12 +81,16 @@ export default function AdminDonationHistory() {
               {history.map((item) => (
                 <tr
                   key={item.id}
-                  className="hover:bg-gray-50 transition-colors"
+                  className="hover:bg-red-50/30 transition-colors group"
                 >
                   <td className="px-6 py-4 font-medium text-gray-800">
-                    <div className="flex items-center gap-2">
-                      <FaUserAlt className="text-gray-400 text-xs" />{" "}
-                      {item.donorName}
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 group-hover:bg-blue-100 transition-colors">
+                        <FaUser size={16} />
+                      </div>
+                      <span className="font-semibold text-gray-800">
+                        {item.donorName}
+                      </span>
                     </div>
                   </td>
                   <td className="px-6 py-4 text-gray-600 text-sm">

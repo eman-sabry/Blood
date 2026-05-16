@@ -34,7 +34,7 @@ const DonationManagement = () => {
     Swal.fire({
       title: "Confirm Completion",
       text: `Confirming blood collection from ${donorEntry.donorName}?`,
-      icon: "question",
+      icon: "success",
       showCancelButton: true,
       confirmButtonColor: "green", // Emerald Green
       cancelButtonColor: "#6b7280",
@@ -156,7 +156,7 @@ const DonationManagement = () => {
                     <button
                       onClick={() => handleCancel(donor)}
                       disabled={isCompletingDonor}
-                      className="flex-1 lg:flex-none flex items-center justify-center gap-2 bg-red-100 text-red-700 border-red-200  hover:bg-red-200 px-6 py-3 rounded-2xl font-bold transition-all active:scale-95 disabled:opacity-50"
+                      className="flex-1 lg:flex-none flex items-center justify-center gap-2 bg-red-600 text-white  hover:bg-red-700 px-6 py-3 rounded-full  transition-all active:scale-95 disabled:opacity-50"
                     >
                       <FaTimesCircle className="text-lg" /> Cancel
                     </button>
@@ -164,7 +164,7 @@ const DonationManagement = () => {
                     <button
                       onClick={() => handleComplete(donor)}
                       disabled={isCompletingDonor}
-                      className="flex-1 lg:flex-none flex items-center justify-center gap-2 bg-green-100 text-green-700 border-green-200 hover:bg-green-200 px-6 py-3 rounded-2xl font-bold transition-all  active:scale-95 disabled:opacity-50"
+                      className="flex-1 lg:flex-none flex items-center justify-center gap-2 bg-green-600 text-white hover:bg-green-700 px-6 py-3 rounded-full transition-all  active:scale-95 disabled:opacity-50"
                     >
                       {isCompletingDonor ? (
                         <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>

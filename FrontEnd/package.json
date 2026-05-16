@@ -24,6 +24,7 @@
     "vite": "^8.0.4"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@hookform/resolvers": "^5.2.2",
     "@material-tailwind/react": "^2.1.10",
     "@tailwindcss/postcss": "^4.2.4",

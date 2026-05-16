@@ -12,8 +12,7 @@ import {
   FaSearch,
   FaHistory,
 } from "react-icons/fa";
-
-import StatsCard from "../../components/dashboard/StatsCard";
+import StatCard from "../../components/dashboard/StatsCard";
 import StockGrid from "../../components/stock/StockGrid";
 import HospitalInfoCard from "../../components/dashboard/HospitalInfoCard";
 import NotificationsPanel from "../../components/DonorPage/NotificationsPanel";
@@ -46,33 +45,14 @@ const { notifications } = useHospitalData(user?.userId);
           </p>
         </div>
       );
-  const stats = [
-    {
-      label: "Active Requests",
-      value: activeRequests.length,
-      icon: <FaRegListAlt />,
-      color: "text-blue-600",
-      bg: "bg-blue-50",
-    },
-    {
-      label: "Total Donors",
-      value: availableDonors.length,
-      icon: <FaUsers />,
-      color: "text-purple-600",
-      bg: "bg-purple-50",
-    },
-    {
-      label: "Stock Units",
-      value: bloodStock.reduce((a, b) => a + b.quantity, 0),
-      icon: <FaTint />,
-      color: "text-red-600",
-      bg: "bg-red-50",
-    },
-  ];
+ 
 
   return (
     <div className="space-y-8 mt-20 md:mt-0 p-4 md:p-6">
       {/* HEADER */}
+      <h1 className="text-4xl font-black text-slate-800 tracking-tight">
+        Hospital Panel
+      </h1>
       <div className="flex justify-between items-center">
         <div>
           <h2 className="text-3xl font-bold">
@@ -93,10 +73,27 @@ const { notifications } = useHospitalData(user?.userId);
       </div>
 
       {/* STATS */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {stats.map((s, i) => (
-          <StatsCard key={i} {...s} />
-        ))}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+        <StatCard
+          title="Active Requests"
+          value={activeRequests?.length || 0}
+          icon={FaRegListAlt}
+          color="bg-blue-500"
+        />
+
+        <StatCard
+          title="Total Donors"
+          value={availableDonors?.length || 0}
+          icon={FaUsers}
+          color="bg-purple-500"
+        />
+
+        <StatCard
+          title="Stock Units"
+          value={bloodStock?.reduce((a, b) => a + Number(b.quantity), 0) || 0}
+          icon={FaTint}
+          color="bg-red-500"
+        />
       </div>
       {/* NOTIFICATIONS */}
       {notifications.filter((n) => n.status === "Unread").length > 0 && (

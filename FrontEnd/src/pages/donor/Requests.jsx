@@ -60,11 +60,17 @@ export default function RequestsPage() {
             {donor?.bloodType || ""}
           </span>
 
-          <span className="bg-red-50 text-red-600 px-4 py-1 rounded-full text-sm">
+          <span className="bg-blue-50 text-blue-600 px-4 py-1 rounded-full text-sm">
             {compatibleRequests.length} Available Requests
           </span>
 
-          <span className="bg-green-50 text-green-600 px-4 py-1 rounded-full text-sm">
+          <span
+            className={`px-4 py-1 rounded-full text-sm ${
+              stats.canDonate
+                ? "bg-green-50 text-green-600"
+                : "bg-red-50 text-red-600"
+            }`}
+          >
             {stats.canDonate ? "Eligible" : "Not Eligible"}
           </span>
         </div>
@@ -81,10 +87,8 @@ export default function RequestsPage() {
         ) : (
           <div className="grid md:grid-cols-2 gap-4">
             {compatibleRequests.map((req) => {
-          
               const hospital = hospitals?.find((h) => h.id === req.hospitalId);
 
-             
               const enrichedRequest = {
                 ...req,
                 hospitalName:
@@ -98,7 +102,7 @@ export default function RequestsPage() {
               return (
                 <BloodRequestCard
                   key={req.id}
-                  request={enrichedRequest} 
+                  request={enrichedRequest}
                   hasActiveTrip={onTheWayRequests?.length > 0}
                   canDonate={
                     !!(

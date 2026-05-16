@@ -7,7 +7,7 @@ import {
   FaHeart,
 } from "react-icons/fa";
 import { toast } from "react-toastify";
-
+import emailjs from "@emailjs/browser";
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -20,11 +20,38 @@ const Contact = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
- toast.success("Message sent successfully")
+const handleSubmit = (e) => {
+  e.preventDefault();
 
-  };
+  emailjs
+    .send(
+      "service_p4aw6in",
+      "template_xcsergt",
+      {
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+      },
+      "aJlFBuJQ73WSLeALv",
+    )
+    .then(
+      () => {
+        toast.success("Message sent successfully ");
+
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+      },
+      (error) => {
+        toast.error("Failed to send message");
+        console.log(error);
+      },
+    );
+};
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-red-50">
@@ -157,7 +184,7 @@ const Contact = () => {
 
               <button
                 type="submit"
-                className="w-full bg-red-500 hover:bg-red-600 text-white font-semibold text-lg py-5 rounded-2xl transition transform hover:scale-105 shadow-md"
+                className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold text-lg py-2 rounded-2xl transition transform shadow-md"
               >
                 Send Message
               </button>

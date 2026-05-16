@@ -129,7 +129,7 @@ export function useAdminData() {
         }) => await api.delete(`/users/${userId}`),
         onSuccess: () => {
             queryClient.invalidateQueries(["admin"]);
-            toast.success("Record deleted successfully");
+           
         }
     });
 

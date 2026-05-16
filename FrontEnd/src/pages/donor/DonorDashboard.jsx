@@ -44,12 +44,7 @@ const { notifications } = useDonorData(user?.userId );
          </p>
        </div>
      );
-  if (!user && !loading)
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="animate-spin h-10 w-10 border-b-2 border-red-600 rounded-full" />
-      </div>
-    );
+
   const mapRequests = compatibleRequests
     .map((req) => {
       const hospital = hospitals?.find(

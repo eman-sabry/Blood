@@ -17,35 +17,7 @@ import Swal from "sweetalert2";
 import AdminReports from "./AdminReports";
 import PendingApprovals from "./PendingApprovals";
 import AdminAllRequests from "./AdminAllRequests";
-const StatCard = ({ title, value, icon: Icon, color = "bg-gray-500" }) => {
-  const textColor =
-    typeof color === "string" ? color.replace("bg-", "text-") : "text-gray-500";
-  return (
-    <div className="group bg-white p-6 rounded-[2rem] shadow-sm border border-gray-100 flex items-center gap-5 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden relative">
-  
-      <div
-        className={`absolute -right-4 -bottom-4 opacity-[0.03] group-hover:opacity-[0.08] transition-opacity ${textColor}`}
-      >
-        {Icon && <Icon size={100} />}
-      </div>
-
-      <div
-        className={`p-4 rounded-2xl ${color} bg-opacity-10 text-2xl ${textColor} group-hover:scale-110 transition-transform relative z-10`}
-      >
-        {Icon && <Icon />}
-      </div>
-
-      <div className="relative z-10">
-        <p className="text-gray-400 text-[10px] font-black uppercase tracking-widest mb-1">
-          {title}
-        </p>
-        <h3 className="text-3xl font-black text-slate-800 tracking-tight">
-          {value ?? 0}
-        </h3>
-      </div>
-    </div>
-  );
-};
+import StatCard from "../../components/dashboard/StatsCard";
 
 export default function AdminDashboard() {
   const { donors, hospitals, requests, actions, isLoading } = useAdminData();
@@ -63,7 +35,7 @@ export default function AdminDashboard() {
         : "Hospital will be activated.",
       icon: isDelete ? "warning" : "question",
       showCancelButton: true,
-      confirmButtonColor: isDelete ? "#ef4444" : "#10b981",
+      confirmButtonColor: isDelete ? "red" : "green",
       borderRadius: "2rem",
     }).then((result) => {
       if (result.isConfirmed) {
@@ -133,28 +105,28 @@ export default function AdminDashboard() {
         <div className="bg-white rounded-[2.5rem] shadow-sm border border-gray-100 overflow-hidden">
           {/* Tabs Navigation */}
 
-          <div className="flex border-b p-3 bg-gray-50/50 gap-2">
+          <div className="flex border-b p-3  bg-gray-50/50 gap-4">
             <button
               onClick={() => setActiveTab("verification")}
-              className={`flex items-center gap-3 px-8 py-4 rounded-[1.5rem] text-sm font-black transition-all ${
+              className={`flex items-center gap-3 px-4 py-4 rounded-xl text-sm font-black transition-all ${
                 activeTab === "verification"
-                  ? "bg-white shadow-md text-red-600 scale-105"
-                  : "text-gray-400 hover:text-gray-600"
+                  ? "bg-red-600 text-white scale-102"
+                  : "bg-gray-100 text-black hover:text-gray-600"
               }`}
             >
               <FaCheck /> Pending Approvals
               {pendingHospitals.length > 0 && (
-                <span className="bg-red-500 text-white text-[10px] px-2 py-0.5 rounded-full animate-pulse">
+                <span className="bg-red-100 text-black text-[10px] px-2 py-0.5 rounded-full animate-pulse">
                   {pendingHospitals.length}
                 </span>
               )}
             </button>
             <button
               onClick={() => setActiveTab("Requests")}
-              className={`flex items-center gap-3 px-8 py-4 rounded-[1.5rem] text-sm font-black transition-all ${
+              className={`flex items-center gap-3 px-4 py-4 rounded-xl text-sm font-black transition-all ${
                 activeTab === "Requests"
-                  ? "bg-white shadow-md text-red-600 scale-105"
-                  : "text-gray-400 hover:text-gray-600"
+                  ? "bg-red-600 text-white scale-102"
+                  : "bg-gray-100 text-black hover:text-gray-600"
               }`}
             >
               <FaHistory /> System Requests
@@ -169,9 +141,7 @@ export default function AdminDashboard() {
               />
             )}
 
-            {activeTab === "Requests" && (
-             <AdminAllRequests/>
-            )}
+            {activeTab === "Requests" && <AdminAllRequests />}
           </div>
         </div>
       </div>

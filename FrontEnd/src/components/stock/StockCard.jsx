@@ -7,7 +7,7 @@ export default function StockCard({ type, stock }) {
   return (
     <div
       className={`rounded-2xl p-5 border transition hover:scale-[1.02]
-      ${isLow ? "bg-red-50 border-red-100" : "bg-white/70 border-gray-100"}`}
+      ${isLow ? "bg-red-50 border-red-300 shadow-red-100 shadow-lg" : "bg-white/70 border-gray-100"}`}
     >
       <p
         className={`text-lg font-extrabold ${
@@ -28,9 +28,9 @@ export default function StockCard({ type, stock }) {
       </div>
 
       {isLow && (
-        <div className="mt-2 flex items-center gap-2 text-xs font-bold text-red-600">
+        <div className="mt-2 flex items-center gap-2 text-xs font-bold text-red-600 animate-pulse drop-shadow-[0_0_8px_rgba(220,38,38,0.9)]">
           <FaExclamationTriangle />
-          LOW STOCK
+          <span>LOW STOCK</span>
         </div>
       )}
     </div>

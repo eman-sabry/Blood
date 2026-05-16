@@ -7,11 +7,15 @@ export default function ProtectedRoute({ children, role }) {
 
   if (isLoading) {
     return (
-      <div className="h-screen flex items-center justify-center">
-        <FaSpinner className="animate-spin text-3xl" />
+      <div className="h-screen flex flex-col items-center justify-center gap-4">
+        <div className="w-12 h-12 border-4 border-red-500 border-t-transparent rounded-full animate-spin"></div>
+        <p className="text-gray-500 font-medium tracking-widest uppercase text-xs">
+          Loading....
+        </p>
       </div>
     );
   }
+  
 
   if (!user) return <Navigate to="/login" replace />;
 

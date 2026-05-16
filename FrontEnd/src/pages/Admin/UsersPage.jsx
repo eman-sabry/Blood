@@ -110,19 +110,19 @@ const handleDelete = (id, name) => {
 
       {/* Filter & Search Bar */}
       <div className="flex flex-wrap items-center justify-between gap-4 bg-white p-4 rounded-3xl border border-gray-100 shadow-sm">
-        <div className="flex bg-gray-50 p-1.5 rounded-2xl">
+        <div className="flex bg-gray-50 p-1.5 rounded-xl gap-4">
           <button
             onClick={() => setActiveTab("donors")}
-            className={`flex items-center gap-2 px-8 py-3 rounded-xl text-sm font-black transition-all ${activeTab === "donors" ? "bg-white text-red-600 shadow-md scale-105" : "text-gray-400 hover:text-gray-600"}`}
+            className={`flex items-center gap-2 px-8 py-3 rounded-xl text-sm font-black transition-all ${activeTab === "donors" ? "bg-red-600 text-white  scale-105" : "text-black bg-gray-100 hover:text-gray-600"}`}
           >
-            <FaUsers /> Donors{" "}
+            <FaUsers /> Donors
             <span className="ml-1 opacity-50">{donors?.length || 0}</span>
           </button>
           <button
             onClick={() => setActiveTab("hospitals")}
-            className={`flex items-center gap-2 px-8 py-3 rounded-xl text-sm font-black transition-all ${activeTab === "hospitals" ? "bg-white text-blue-600 shadow-md scale-105" : "text-gray-400 hover:text-gray-600"}`}
+            className={`flex items-center gap-2 px-8 py-3 rounded-xl text-sm font-black transition-all ${activeTab === "hospitals" ? "bg-blue-600 text-white scale-105" : "text-black bg-gray-100 hover:text-gray-600"}`}
           >
-            <FaHospital /> Hospitals{" "}
+            <FaHospital /> Hospitals
             <span className="ml-1 opacity-50">{hospitals?.length || 0}</span>
           </button>
         </div>
@@ -209,8 +209,8 @@ const handleDelete = (id, name) => {
                         {item.User?.email || item.email || "No Phone"}
                       </div>
                       <div className="flex items-center gap-2 text-[10px] text-gray-400">
-                        <FaMapMarkerAlt className="shrink-0" />
-                        <span className="truncate max-w-[150px]">
+                        <FaMapMarkerAlt className="shrink-0  text-red-400" />
+                        <span className="break-words max-w-[150px]">
                           {item.address || "Location N/A"}
                         </span>
                       </div>
@@ -222,7 +222,7 @@ const handleDelete = (id, name) => {
                   ${
                     item.status === "approved"
                       ? "bg-green-100 text-green-700"
-                      : item.status === "Pending"
+                      : item.status === "pending"
                         ? "bg-yellow-100 text-yellow-700"
                         : "bg-red-100 text-red-700"
                   }`}
