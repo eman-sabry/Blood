@@ -119,7 +119,7 @@ export function useAdminData() {
         },
         onSuccess: () => {
             queryClient.invalidateQueries(["admin"]);
-            toast.success("Hospital account activated! 🎉");
+            toast.success("Hospital account activated!");
         }
     });
 
